@@ -1,5 +1,36 @@
 {
+  "topNavbar": {
+    "search": "Search",
+    "wishlist": "Wishlist",
+    "cart": "Cart",
+    "account": "Account"
+  },
+
+  "navbar": {
+    "items": ["Home", "Shop", "About Us", "Contact Us"],
+    "loginRegister": "Login/Register"
+  },
+
+  "category": {
+    "allCategory": "All Categories",
+    "categoryItems": [
+      "Sofa",
+      "Living Room",
+      "Bed Room",
+      "Kitchen",
+      "Outdoor",
+      "Mattrass"
+    ]
+  },
+
   "home": {
-    "text": "Home"
+    "banner": {
+      "title": ["Best Collection For", "Home Decoration"],
+      "description": [
+        "Upgrade your space with our sleek, stylish furniture. ",
+        "Crafted with premium materials for enduring comfort and timeless elegance"
+      ],
+      "shopNow": "Shop Now"
+    }
   }
 }

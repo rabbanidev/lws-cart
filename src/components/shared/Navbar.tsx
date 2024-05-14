@@ -1,8 +1,28 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { IoMenuOutline } from 'react-icons/io5';
+import { categories, navbarItems } from '../../../constants';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '../../../lib/dictionaries';
+import type { Category, NavbarItem } from '../../../types';
+import LwsLink from './LwsLink';
 
-export default function Navbar() {
+type Props = {
+  lang: Locale;
+};
+
+export default async function Navbar({ lang }: Props) {
+  const { navbar, category } = await getDictionary(lang);
+
+  const langNavbarItems: NavbarItem[] = navbarItems.map((nav, index) => ({
+    ...nav,
+    text: navbar.items[index],
+  }));
+
+  const langCategoryItems: Category[] = categories.map((cate, index) => ({
+    ...cate,
+    label: category.categoryItems[index],
+  }));
+
   return (
     <nav className="bg-gray-800">
       <div className="container flex">
@@ -10,59 +30,55 @@ export default function Navbar() {
           <span className="text-white">
             <IoMenuOutline size={24} />
           </span>
-          <span className="ml-2 capitalize text-white">All Categories</span>
+          <span className="ml-2 capitalize text-white">
+            {category.allCategory}
+          </span>
 
           {/*  dropdown */}
           <div className="invisible absolute left-0 top-full w-[300px] divide-y divide-dashed divide-gray-300 bg-white py-3 opacity-0 shadow-md transition duration-300 group-hover:visible group-hover:opacity-100">
-            <Link
-              href="/categories/category"
-              className="flex items-center px-6 py-3 transition hover:bg-gray-100"
-            >
-              <Image
-                src="/icons/sofa.svg"
-                alt="sofa"
-                className="h-5 w-5 object-contain"
-                width={20}
-                height={20}
-              />
-              <span className="ml-6 text-sm text-gray-600">Sofa</span>
-            </Link>
+            {langCategoryItems.map((category) => (
+              <LwsLink
+                key={category.id}
+                lang={lang}
+                href={`/categories/${category.value}`}
+                className="flex items-center px-6 py-3 transition hover:bg-gray-100"
+              >
+                <Image
+                  src={`/icons/${category.icon}`}
+                  alt={category.value}
+                  className="h-5 w-5 object-contain"
+                  width={20}
+                  height={20}
+                />
+                <span className="ml-6 text-sm text-gray-600">
+                  {category.label}
+                </span>
+              </LwsLink>
+            ))}
           </div>
         </div>
 
         <div className="flex flex-grow items-center justify-between py-5 md:pl-12">
           <div className="flex items-center space-x-6 capitalize">
-            <Link
-              href="/"
-              className="text-gray-200 transition hover:text-white"
-            >
-              Home
-            </Link>
-            <Link
-              href="/shop"
-              className="text-gray-200 transition hover:text-white"
-            >
-              Shop
-            </Link>
-            <Link
-              href="/about-us"
-              className="text-gray-200 transition hover:text-white"
-            >
-              About us
-            </Link>
-            <Link
-              href="/contact-us"
-              className="text-gray-200 transition hover:text-white"
-            >
-              Contact us
-            </Link>
+            {langNavbarItems.map((navItem) => (
+              <LwsLink
+                key={navItem.text}
+                lang={lang}
+                href={navItem.path}
+                className="text-gray-200 transition hover:text-white"
+              >
+                {navItem.text}
+              </LwsLink>
+            ))}
           </div>
-          <Link
+
+          <LwsLink
+            lang={lang}
             href="/login"
             className="text-gray-200 transition hover:text-white"
           >
-            Login/Register
-          </Link>
+            {navbar.loginRegister}
+          </LwsLink>
         </div>
       </div>
     </nav>

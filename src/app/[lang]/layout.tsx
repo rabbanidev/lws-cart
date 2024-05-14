@@ -5,6 +5,7 @@ import { Locale } from '@/i18n.config';
 import Navbar from '@/components/shared/Navbar';
 
 import '../globals.css';
+import Footer from '@/components/shared/Footer';
 
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'bn' }];
@@ -27,9 +28,10 @@ export default function RootLayout({
   return (
     <html lang={lang}>
       <body className={inter.className}>
-        <TopNavbar />
-        <Navbar />
-        {children}
+        <TopNavbar lang={lang} />
+        <Navbar lang={lang} />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );
