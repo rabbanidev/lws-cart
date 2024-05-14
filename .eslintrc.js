@@ -60,6 +60,7 @@ module.exports = {
     'react/prop-types': 'off',
     'prettier/prettier': 'warn',
   },
+
   settings: {
     react: {
       version: 'detect',

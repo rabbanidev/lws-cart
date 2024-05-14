@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { i18n } from '@/i18n.config';
-import { getLocale } from '@/utils/getLocale';
 import type { NextRequest } from 'next/server';
+import { getLocale } from '../utils/getLocale';
 
 export const middleware = (request: NextRequest) => {
   const { pathname } = request.nextUrl;
@@ -24,6 +24,10 @@ export const middleware = (request: NextRequest) => {
 };
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  matcher: [
+    // Skip all internal paths (_next, assets, api)
+    '/((?!api|assets|.*\\..*|_next).*)',
+    // Optional: only run on root (/) URL
+    // '/'
+  ],
 };

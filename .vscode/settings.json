@@ -3,7 +3,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.fixAll.format": "always"
+    "source.fixAll.eslint": "never",
+    "source.fixAll.format": "never"
   }
 }
