@@ -37,5 +37,39 @@
       "title": "Shop By Category",
       "collection": "Collection"
     }
+  },
+
+  "auth": {
+    "name": "Full Name",
+    "emailAddress": "Email address",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "or": "OR LOGIN WITH",
+
+    "login": {
+      "title": "Login",
+      "shortDescription": "welcome back customer",
+      "btnText": "Login",
+      "noAccount": "Don't have account?",
+      "registerNow": "Register now",
+      "remberMe": "Remember me"
+    },
+
+    "register": {
+      "title": "Create An Account",
+      "shortDescription": "Register for new customer",
+      "btnText": "Create Account",
+      "noAccount": "Already have account?",
+      "loginNow": "Login now",
+      "termsCondition": "I have read and agree to the  <a href='#' style='color:#fd3d57'> terms & conditions </a>"
+    },
+
+    "forgotPassword": {
+      "title": "Forgot password?"
+    },
+    "social": {
+      "fb": "Facebook",
+      "google": "Google"
+    }
   }
 }

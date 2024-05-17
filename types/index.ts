@@ -1,4 +1,4 @@
-import { NavbarItem } from './others';
+import { NavbarItem, Dictionary, Dictionaries } from './others';
 import { Category } from './category';
 
-export type { Category, NavbarItem };
+export type { Category, NavbarItem, Dictionary, Dictionaries };
