@@ -13,24 +13,29 @@
 
   "category": {
     "allCategory": "All Categories",
-    "categoryItems": [
-      "Sofa",
-      "Living Room",
-      "Bed Room",
-      "Kitchen",
-      "Outdoor",
-      "Mattrass"
-    ]
+    "categoryItems": ["Man", "Woman", "Kids", "Summer", "Winter"]
   },
 
   "home": {
     "banner": {
-      "title": ["Best Collection For", "Home Decoration"],
+      "title": ["Simple, Stylish &", "Locally Crafted!"],
       "description": [
-        "Upgrade your space with our sleek, stylish furniture. ",
-        "Crafted with premium materials for enduring comfort and timeless elegance"
+        "Our values are upheld within high quality tailoring, fabric insight and",
+        " innovative design alongside the desire for innovative and the natural beauty."
       ],
-      "shopNow": "Shop Now"
+      "shopNow": "Explore Collections"
+    },
+    "features": {
+      "shipping": "Free Shipping",
+      "orderOver": "Order over $200",
+      "moneyReturns": "Money Returns",
+      "moneyReturns30Day": "30 days money returns",
+      "support": "24/7 Support",
+      "customerSupport": "Customer support"
+    },
+    "categories": {
+      "title": "Shop By Category",
+      "collection": "Collection"
     }
   }
 }

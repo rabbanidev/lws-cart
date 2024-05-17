@@ -55,7 +55,7 @@ export default async function TopNavbar({ lang }: Props) {
             <div className="mt-1 text-xs leading-3">
               {dict.topNavbar.wishlist}
             </div>
-            <div className="absolute -top-2 right-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
+            <div className="absolute -top-2 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
               8
             </div>
           </LwsLink>

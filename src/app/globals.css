@@ -24,10 +24,10 @@
     @apply bg-primary text-white;
   }
   .color-selector input:checked + label {
-    @apply ring-primary ring-2;
+    @apply ring-2 ring-primary;
   }
 
   .input-box {
-    @apply focus:border-primary block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:ring-0;
+    @apply block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0;
   }
 }

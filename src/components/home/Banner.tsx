@@ -13,15 +13,17 @@ type IProps = {
 export default function Banner({ dict, lang }: IProps) {
   return (
     <div
-      className="bg-cover bg-center bg-no-repeat py-36"
-      style={{ backgroundImage: `url('/banner-bg.jpg')` }}
+      className="bg-cover bg-center bg-no-repeat py-40"
+      style={{
+        backgroundImage: `url('/banner-bg.jpg')`,
+      }}
     >
       <div className="container">
-        <h1 className="mb-4 text-6xl font-medium capitalize text-gray-800">
+        <h1 className="mb-4 text-6xl font-medium capitalize text-black">
           {dict.title[0]} <br />
           {dict.title[1]}
         </h1>
-        <p>
+        <p className="text-black">
           {dict.description[0]} <br />
           {dict.description[1]}
         </p>
