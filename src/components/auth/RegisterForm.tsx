@@ -1,14 +1,29 @@
 'use client';
 
+import { useFormState } from 'react-dom';
 import { Dictionary } from '../../../types';
+import { register } from '@/actions/auth';
+import ErrorMessage from '../UI/Error';
+import SubmitButton from '../UI/SubmitButton';
+import { Locale } from '@/i18n.config';
 
 type Props = {
+  lang: Locale;
   dict: Dictionary;
 };
 
-export default function RegisterForm({ dict }: Props) {
+export default function RegisterForm({ lang, dict }: Props) {
+  const [state, formAction] = useFormState(register, null);
+
+  const {
+    name = [],
+    email = [],
+    password = [],
+    confirmPassword = [],
+  } = state?.errors || {};
+
   return (
-    <form action="#" autoComplete="off">
+    <form action={formAction} autoComplete="off">
       <div className="space-y-2">
         <div>
           <label htmlFor="name" className="mb-2 block text-gray-600">
@@ -21,6 +36,7 @@ export default function RegisterForm({ dict }: Props) {
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="fulan fulana"
           />
+          {name?.length > 0 && <ErrorMessage message={name[0]} />}
         </div>
         <div>
           <label htmlFor="email" className="mb-2 block text-gray-600">
@@ -33,6 +49,7 @@ export default function RegisterForm({ dict }: Props) {
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="youremail.@domain.com"
           />
+          {email?.length > 0 && <ErrorMessage message={email[0]} />}
         </div>
         <div>
           <label htmlFor="password" className="mb-2 block text-gray-600">
@@ -45,18 +62,22 @@ export default function RegisterForm({ dict }: Props) {
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="*******"
           />
+          {password?.length > 0 && <ErrorMessage message={password[0]} />}
         </div>
         <div>
-          <label htmlFor="confirm" className="mb-2 block text-gray-600">
+          <label htmlFor="confirmPassword" className="mb-2 block text-gray-600">
             {dict.auth.confirmPassword} <span className="text-primary">*</span>
           </label>
           <input
             type="password"
-            name="confirm"
-            id="confirm"
+            name="confirmPassword"
+            id="confirmPassword"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="*******"
           />
+          {confirmPassword?.length > 0 && (
+            <ErrorMessage message={confirmPassword[0]} />
+          )}
         </div>
       </div>
       <div className="mt-6">
@@ -66,6 +87,7 @@ export default function RegisterForm({ dict }: Props) {
             name="aggrement"
             id="aggrement"
             className="cursor-pointer rounded-sm text-primary focus:ring-0"
+            required={true}
           />
           <label
             htmlFor="aggrement"
@@ -77,13 +99,18 @@ export default function RegisterForm({ dict }: Props) {
         </div>
       </div>
       <div className="mt-4">
-        <button
-          type="submit"
+        <SubmitButton
+          lang={lang}
           className="block w-full rounded border border-primary bg-primary py-2 text-center font-roboto font-medium uppercase text-white transition hover:bg-transparent hover:text-primary"
         >
           {dict.auth.register.btnText}
-        </button>
+        </SubmitButton>
       </div>
+      {state?.error && (
+        <div className="mt-4">
+          <ErrorMessage message={state.error} />
+        </div>
+      )}
     </form>
   );
 }

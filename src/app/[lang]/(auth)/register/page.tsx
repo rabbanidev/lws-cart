@@ -22,7 +22,7 @@ export default async function RegisterPage({ params: { lang } }: Props) {
         <p className="mb-6 text-sm text-gray-600">
           {dict.auth.register.shortDescription}
         </p>
-        <RegisterForm dict={dict} />
+        <RegisterForm lang={lang} dict={dict} />
         <SocialLogin dict={dict} />
 
         <p className="mt-4 text-center text-gray-600">
