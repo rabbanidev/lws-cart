@@ -1,9 +1,14 @@
 'use server';
 
+import { redirect } from 'next/navigation';
 import envConfig from '../../config/envConfig';
-import { registerSchema } from '../../lib/zod';
+import { loginSchema, registerSchema } from '../../lib/zod';
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 
 export const register = async (_prevState: unknown, formData: FormData) => {
+  let isRedirect = false;
+
   try {
     const user = {
       name: formData.get('name'),
@@ -11,15 +16,14 @@ export const register = async (_prevState: unknown, formData: FormData) => {
       password: formData.get('password'),
       confirmPassword: formData.get('confirmPassword'),
     };
-
     const validatedFields = registerSchema.safeParse(user);
-
     if (!validatedFields.success) {
       return {
         errors: validatedFields.error.flatten().fieldErrors,
       };
     }
 
+    // TODO: Register user API call
     const res = await fetch(`${envConfig.client_uri}/api/auth/register`, {
       method: 'POST',
       headers: {
@@ -27,28 +31,59 @@ export const register = async (_prevState: unknown, formData: FormData) => {
       },
       body: JSON.stringify(user),
     });
-
     const data = await res.json();
 
     if (res.status === 201) {
-      // Create user done
-    } else {
-      return {
-        error: data?.message || 'Something went wrong!',
-      };
+      isRedirect = true;
     }
 
-    // const registerUser = await createUser(user);
-
-    // return {
-    //   message: 'User registered successfully!',
-    //   user: registerUser,
-    // };
+    return {
+      error: data?.message || 'Something went wrong!',
+    };
   } catch (error: unknown) {
+    isRedirect = false;
+
     if (error instanceof Error) {
       return {
         error: error.message || 'Something went wrong!',
       };
     }
+  } finally {
+    if (isRedirect) {
+      redirect(`/${formData.get('lang')}/login`);
+    }
+  }
+};
+
+export const login = async (_prevState: unknown, formData: FormData) => {
+  try {
+    const user = {
+      email: formData.get('email'),
+      password: formData.get('password'),
+    };
+    const validatedFields = loginSchema.safeParse(user);
+    if (!validatedFields.success) {
+      return {
+        errors: validatedFields.error.flatten().fieldErrors,
+      };
+    }
+
+    await signIn('credentials', {
+      ...user,
+      redirectTo: '/',
+    });
+
+    return undefined;
+  } catch (error: unknown) {
+    if (error instanceof AuthError) {
+      // TODO: Error handling
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return { error: 'Invalid credentials!' };
+        default:
+          return { error: 'Something went wrong!' };
+      }
+    }
+    throw error;
   }
 };

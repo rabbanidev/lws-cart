@@ -3,8 +3,8 @@
 import { useFormState } from 'react-dom';
 import { Dictionary } from '../../../types';
 import { register } from '@/actions/auth';
-import ErrorMessage from '../UI/Error';
-import SubmitButton from '../UI/SubmitButton';
+import ErrorMessage from '@/components/UI/Error';
+import SubmitButton from '@/components/UI/SubmitButton';
 import { Locale } from '@/i18n.config';
 
 type Props = {
@@ -22,8 +22,13 @@ export default function RegisterForm({ lang, dict }: Props) {
     confirmPassword = [],
   } = state?.errors || {};
 
+  const handleAction = (formData: FormData) => {
+    formData.append('lang', lang);
+    formAction(formData);
+  };
+
   return (
-    <form action={formAction} autoComplete="off">
+    <form action={handleAction} autoComplete="off">
       <div className="space-y-2">
         <div>
           <label htmlFor="name" className="mb-2 block text-gray-600">

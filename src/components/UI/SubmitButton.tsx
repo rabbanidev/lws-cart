@@ -17,7 +17,6 @@ export default function SubmitButton({
   // decide what to render
   let content;
   if (lang === 'en' && pending) {
-    console.log('yes');
     content = 'Loading...';
   } else if (lang === 'bn' && pending) {
     content = 'লোডিং...';
