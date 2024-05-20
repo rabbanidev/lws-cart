@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import { IoMenuOutline } from 'react-icons/io5';
-import { categories, navbarItems } from '../../../constants';
+import { navbarItems } from '../../../constants';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../lib/dictionaries';
 import type { Category, NavbarItem } from '../../../types';
 import LwsLink from './LwsLink';
+import { getCategories } from '../../../services/category.service';
 
 type Props = {
   lang: Locale;
@@ -12,6 +13,7 @@ type Props = {
 
 export default async function Navbar({ lang }: Props) {
   const { navbar, category } = await getDictionary(lang);
+  const categories: Category[] = await getCategories();
 
   const langNavbarItems: NavbarItem[] = navbarItems.map((nav, index) => ({
     ...nav,
@@ -20,7 +22,7 @@ export default async function Navbar({ lang }: Props) {
 
   const langCategoryItems: Category[] = categories.map((cate, index) => ({
     ...cate,
-    label: category.categoryItems[index],
+    name: category.categoryItems[index],
   }));
 
   return (
@@ -34,24 +36,26 @@ export default async function Navbar({ lang }: Props) {
             {category.allCategory}
           </span>
 
-          {/*  dropdown */}
+          {/*  Category Dropdown */}
           <div className="invisible absolute left-0 top-full w-[300px] divide-y divide-dashed divide-gray-300 bg-white py-3 opacity-0 shadow-md transition duration-300 group-hover:visible group-hover:opacity-100">
             {langCategoryItems.map((category) => (
               <LwsLink
                 key={category.id}
                 lang={lang}
-                href={`/categories/${category.value}`}
+                href={`/categories/${category.slug}`}
                 className="flex items-center px-6 py-3 transition hover:bg-gray-100"
               >
-                <Image
-                  src={`/icons/${category.icon}`}
-                  alt={category.value}
-                  className="h-5 w-5 object-contain"
-                  width={20}
-                  height={20}
-                />
+                {category.icon && (
+                  <Image
+                    src={category.icon}
+                    alt={category.slug}
+                    className="h-5 w-5 object-contain"
+                    width={20}
+                    height={20}
+                  />
+                )}
                 <span className="ml-6 text-sm text-gray-600">
-                  {category.label}
+                  {category.name}
                 </span>
               </LwsLink>
             ))}
