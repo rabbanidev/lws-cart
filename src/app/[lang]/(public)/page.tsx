@@ -3,6 +3,7 @@ import { getDictionary } from '../../../../lib/dictionaries';
 import Banner from '@/components/home/Banner';
 import Features from '@/components/home/Features';
 import Categories from '@/components/home/Categories';
+import { getProducts } from '../../../../services/product.service';
 
 type Props = {
   params: { lang: Locale };
@@ -10,6 +11,8 @@ type Props = {
 
 export default async function HomePage({ params: { lang } }: Props) {
   const dict = await getDictionary(lang);
+
+  await getProducts();
 
   return (
     <>
