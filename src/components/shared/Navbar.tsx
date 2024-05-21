@@ -1,10 +1,12 @@
 import Image from 'next/image';
 import { IoMenuOutline } from 'react-icons/io5';
-import { navbarItems } from '../../../constants';
 import { Locale } from '@/i18n.config';
+import LwsLink from '@/components/shared/LwsLink';
+import AuthPannel from '@/components/auth/AuthPannel';
+import LangSwitcher from '@/components/shared/LangSwitcher';
+import { navbarItems } from '../../../constants';
 import { getDictionary } from '../../../lib/dictionaries';
 import type { Category, NavbarItem } from '../../../types';
-import LwsLink from './LwsLink';
 import { getCategories } from '../../../services/category.service';
 
 type Props = {
@@ -76,13 +78,10 @@ export default async function Navbar({ lang }: Props) {
             ))}
           </div>
 
-          <LwsLink
-            lang={lang}
-            href="/login"
-            className="text-gray-200 transition hover:text-white"
-          >
-            {navbar.loginRegister}
-          </LwsLink>
+          <div className="flex items-center gap-x-5">
+            <AuthPannel lang={lang} />
+            <LangSwitcher lang={lang} />
+          </div>
         </div>
       </div>
     </nav>
