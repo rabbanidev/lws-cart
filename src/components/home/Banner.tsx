@@ -23,7 +23,7 @@ export default function Banner({ dict, lang }: IProps) {
           {dict.title[0]} <br />
           {dict.title[1]}
         </h1>
-        <p className="text-black">
+        <p className="text-gray-600">
           {dict.description[0]} <br />
           {dict.description[1]}
         </p>

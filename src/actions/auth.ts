@@ -70,7 +70,7 @@ export const login = async (_prevState: unknown, formData: FormData) => {
 
     await signIn('credentials', {
       ...user,
-      redirectTo: '/',
+      redirectTo: `/${formData.get('lang')}`,
     });
 
     return undefined;

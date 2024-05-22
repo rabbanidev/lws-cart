@@ -12,7 +12,6 @@ export default function Footer() {
             width={100}
             height={40}
           />
-          {/* <img src="assets/images/logo.svg" alt="LWS-Cart" className="w-30" /> */}
           <div className="mr-2">
             <p className="text-gray-500">
               Elevate your space with our premium, stylish furniture.

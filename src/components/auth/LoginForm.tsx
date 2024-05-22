@@ -17,8 +17,13 @@ export default function LoginForm({ lang, dict }: Props) {
 
   const { email = [], password = [] } = state?.errors || {};
 
+  const handleAction = (formData: FormData) => {
+    formData.append('lang', lang);
+    formAction(formData);
+  };
+
   return (
-    <form action={formAction} autoComplete="off">
+    <form action={handleAction} autoComplete="off">
       <div className="space-y-2">
         <div>
           <label htmlFor="email" className="mb-2 block text-gray-600">

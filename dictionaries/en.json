@@ -36,6 +36,16 @@
     "categories": {
       "title": "Shop By Category",
       "collection": "Collection"
+    },
+    "newArrival": {
+      "title": "top new arrival"
+    },
+    "trending": {
+      "title": "trending products"
+    },
+    "advertise": {
+      "title": "exlore our products",
+      "description": "Shopping online can save you money, especially when you combine it with online savings codes, deals of the day, no-taxes-charged, and free shipping offers."
     }
   },
 
@@ -71,5 +81,11 @@
       "fb": "Facebook",
       "google": "Google"
     }
+  },
+
+  "product": {
+    "addToCart": "Add to cart",
+    "addToWishlist": "Add to wishlist",
+    "view": "view product"
   }
 }
