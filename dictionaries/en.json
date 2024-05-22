@@ -84,8 +84,17 @@
   },
 
   "product": {
+    "breadcrumbTitle": "Product",
     "addToCart": "Add to cart",
     "addToWishlist": "Add to wishlist",
-    "view": "view product"
+    "view": "view product",
+    "availability": "Availability",
+    "brand": "Brand",
+    "category": "Category",
+    "sku": "SKU",
+    "qty": "quantity",
+    "reviews": "Reviews",
+    "description": "Product details",
+    "relatedProducts": "Related products"
   }
 }

@@ -45,3 +45,60 @@ export function ProductCardSkeleton() {
     </div>
   );
 }
+
+export function ProductDetailsSkeleton() {
+  return (
+    <div className=" container grid animate-pulse grid-cols-1 gap-6 md:grid-cols-2">
+      <div>
+        <div className="h-64 w-full rounded bg-gray-300"></div>
+        <div className="mt-4 grid grid-cols-5 gap-4">
+          {[...Array(5)].map((_, index) => (
+            <div key={index} className="h-20 w-full rounded bg-gray-300"></div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="mb-4 h-8 w-3/4 rounded bg-gray-300"></div>
+        <div className="mb-4 flex items-center">
+          <div className="flex gap-1">
+            {[...Array(5)].map((_, index) => (
+              <div
+                key={index}
+                className="h-4 w-4 rounded-full bg-gray-300"
+              ></div>
+            ))}
+          </div>
+          <div className="ml-3 h-4 w-16 rounded bg-gray-300"></div>
+        </div>
+        <div className="space-y-2">
+          <div className="h-4 w-1/2 rounded bg-gray-300"></div>
+          <div className="h-4 w-1/3 rounded bg-gray-300"></div>
+          <div className="h-4 w-1/4 rounded bg-gray-300"></div>
+          <div className="h-4 w-1/5 rounded bg-gray-300"></div>
+        </div>
+        <div className="mb-1 mt-4 flex items-baseline space-x-2 font-roboto">
+          <div className="h-6 w-16 rounded bg-gray-300"></div>
+          <div className="h-6 w-12 rounded bg-gray-300"></div>
+        </div>
+        <div className="mt-4">
+          <div className="h-4 w-20 rounded bg-gray-300"></div>
+          <div className="mt-2 flex w-max divide-x divide-gray-300 border border-gray-300 text-gray-600">
+            <div className="h-8 w-8 rounded bg-gray-300"></div>
+            <div className="h-8 w-8 rounded bg-gray-300"></div>
+            <div className="h-8 w-8 rounded bg-gray-300"></div>
+          </div>
+        </div>
+        <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
+          <div className="h-10 w-32 rounded bg-gray-300"></div>
+          <div className="h-10 w-32 rounded bg-gray-300"></div>
+        </div>
+        <div className="mt-4 flex gap-3">
+          <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+          <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+          <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+        </div>
+      </div>
+    </div>
+  );
+}

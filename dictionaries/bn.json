@@ -84,8 +84,17 @@
   },
 
   "product": {
+    "breadcrumbTitle": "প্রোডাক্টস",
     "addToCart": "কার্টে যোগ করুন",
     "addToWishlist": "ফেভারিটে যোগ করুন",
-    "view": "প্রোডাক্টস দেখুন"
+    "view": "প্রোডাক্টস দেখুন",
+    "availability": "এভেইল্যাবল",
+    "brand": "ব্রান্ড ",
+    "category": "ক্যাটেগরি",
+    "sku": "SKU",
+    "qty": "পরিমাণ",
+    "reviews": "রিভিউ",
+    "description": "প্রোডাক্টস এর বিবরণ",
+    "relatedProducts": "সম্পর্কিত প্রোডাক্টস"
   }
 }
