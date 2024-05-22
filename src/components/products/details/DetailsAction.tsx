@@ -1,11 +1,16 @@
+'use client';
+
 import AddToCartButton from '@/components/shared/AddToCartButton';
 import WishlistButton from '@/components/shared/WishlistButton';
+import { useState } from 'react';
 
 type Props = {
   qtyTitle: string;
 };
 
 export default function DetailsAction({ qtyTitle }: Props) {
+  const [quantity, setQuantity] = useState(1);
+
   return (
     <>
       <div className="mt-4">
@@ -13,19 +18,21 @@ export default function DetailsAction({ qtyTitle }: Props) {
         <div className="flex w-max divide-x divide-gray-300 border border-gray-300 text-gray-600">
           <button
             type="button"
-            className="flex h-8 w-8 cursor-pointer select-none items-center justify-center text-xl"
+            className={`flex h-8 w-8 select-none items-center justify-center text-xl ${quantity === 1 ? 'cursor-not-allowed' : 'cursor-pointer'}`}
+            disabled={quantity === 1}
+            onClick={() => setQuantity((prev) => prev - 1)}
           >
             -
           </button>
+          <span className="flex h-8 w-8 items-center justify-center text-base">
+            {quantity}
+          </span>
           <button
-            type="button"
-            className="flex h-8 w-8 items-center justify-center text-base"
+            className="flex h-8 w-8 cursor-pointer select-none items-center justify-center text-xl"
+            onClick={() => setQuantity((prev) => prev + 1)}
           >
-            4
-          </button>
-          <div className="flex h-8 w-8 cursor-pointer select-none items-center justify-center text-xl">
             +
-          </div>
+          </button>
         </div>
       </div>
 

@@ -3,65 +3,41 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function ImageGallery() {
-  const [image, setImage] = useState('/products/product1.jpg');
+type Props = {
+  alt: string;
+  images: string[];
+};
+
+export default function ImageGallery({ alt, images }: Props) {
+  const [image, setImage] = useState(images[0]);
 
   const handleImageChange = (path: string) => {
-    setImage(`/products/${path}`);
+    setImage(path);
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-x-5 lg:flex-row">
+      <div className="order-2 mt-4 flex gap-2 lg:order-1 lg:mt-0 lg:flex-col">
+        {images.map((img) => (
+          <Image
+            key={img}
+            src={img}
+            alt={alt}
+            className={`h-24 w-24 cursor-pointer border ${img === image ? 'border-primary p-1' : ''}`}
+            width={100}
+            height={100}
+            onClick={() => handleImageChange(img)}
+          />
+        ))}
+      </div>
       <Image
         src={image}
-        alt="product"
-        className="w-full"
+        alt={alt}
+        className="order-1 h-[512px] w-full"
         width={100}
         height={100}
         unoptimized
       />
-      <div className="mt-4 grid grid-cols-5 gap-4">
-        <Image
-          src={image}
-          alt="product2"
-          className="w-full cursor-pointer border border-primary"
-          width={100}
-          height={100}
-          onClick={() => handleImageChange('product1.jpg')}
-        />
-        <Image
-          src="/products/product2.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-          width={100}
-          height={100}
-          onClick={() => handleImageChange('product2.jpg')}
-        />
-        <Image
-          src="/products/product3.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-          width={100}
-          height={100}
-          onClick={() => handleImageChange('product3.jpg')}
-        />
-        <Image
-          src="/products/product4.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-          width={100}
-          height={100}
-          onClick={() => handleImageChange('product4.jpg')}
-        />
-        <Image
-          src="/products/product5.jpg"
-          alt="product2"
-          className="w-full cursor-pointer border"
-          width={100}
-          height={100}
-          onClick={() => handleImageChange('product5.jpg')}
-        />
-      </div>
     </div>
   );
 }

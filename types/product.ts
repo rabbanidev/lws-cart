@@ -1,13 +1,12 @@
 import { Category } from './category';
 import { Size } from './size';
 import { Color } from './color';
-import { Types } from 'mongoose';
 import { Review } from './review';
 
 export type Product = {
   id: string;
   name: string;
-  categories: Types.ObjectId[] | Category[];
+  categories: Category[];
   price: number;
   discountPrice?: number;
   images: string[];
@@ -16,10 +15,10 @@ export type Product = {
   availability: 'In Stock' | 'Out Stock';
   shortDescription?: string;
   description?: string;
-  sizes: Types.ObjectId[] | Size[];
-  colors: Types.ObjectId[] | Color[];
+  sizes: Size[];
+  colors: Color[];
   stock: number;
   soldCounts?: number;
   rating: number;
-  reviews?: Types.ObjectId[] | Review[];
+  reviews?: Review[];
 };

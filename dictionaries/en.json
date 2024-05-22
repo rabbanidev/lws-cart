@@ -94,6 +94,7 @@
     "sku": "SKU",
     "qty": "quantity",
     "reviews": "Reviews",
+    "noReview": "There is no reviews",
     "description": "Product details",
     "relatedProducts": "Related products"
   }

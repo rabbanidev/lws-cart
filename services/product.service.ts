@@ -167,7 +167,7 @@ export const getProduct = async (id: string) => {
       })
       .lean();
 
-    return replaceMongoIdInObject(product);
+    return replaceMongoIdInObject(product) || null;
   } catch (error) {
     return error;
   }

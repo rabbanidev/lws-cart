@@ -1,15 +1,21 @@
 'use client';
 
 import Tabs from '@/components/UI/Tabs';
-import { Dictionary } from '../../../../types';
+import { Dictionary, Review } from '../../../../types';
 import { useState } from 'react';
 import Reviews from './Reviews';
 
 type Props = {
   dict: Dictionary;
+  description: string | undefined;
+  reviews?: Review[];
 };
 
-export default function DescriptionAndReviews({ dict }: Props) {
+export default function DescriptionAndReviews({
+  dict,
+  description,
+  reviews,
+}: Props) {
   const options: string[] = [dict.product.description, dict.product.reviews];
 
   const [tabElement, setTabElement] = useState<string>(options[0]);
@@ -27,28 +33,11 @@ export default function DescriptionAndReviews({ dict }: Props) {
       tabElement === 'প্রোডাক্টস এর বিবরণ' ? (
         <div className="w-3/5 pt-6">
           <div className="text-gray-600">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-              necessitatibus deleniti natus dolore cum maiores suscipit optio
-              itaque voluptatibus veritatis tempora iste facilis non aut
-              sapiente dolor quisquam, ex ab.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
-              quae accusantium voluptatem blanditiis sapiente voluptatum. Autem
-              ab, dolorum assumenda earum veniam eius illo fugiat possimus illum
-              dolor totam, ducimus excepturi.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
-              quia modi ut expedita! Iure molestiae labore cumque nobis quasi
-              fuga, quibusdam rem? Temporibus consectetur corrupti rerum
-              veritatis numquam labore amet.
-            </p>
+            <p>{description}</p>
           </div>
         </div>
       ) : (
-        <Reviews />
+        <Reviews reviews={reviews || []} noReview={dict.product.noReview} />
       )}
     </div>
   );
