@@ -2,17 +2,26 @@ import { NextResponse } from 'next/server';
 import { i18n } from '@/i18n.config';
 import type { NextRequest } from 'next/server';
 import { getLocale } from '../utils/getLocale';
+// import { cookies } from 'next/headers';
 import { getLanguageFromURL, removeLanguagePrefix } from '../utils/url';
 import { loggedInRoutes, loggedOutRoutes } from '../constants';
-import { auth } from './auth';
+import { getToken } from 'next-auth/jwt';
+import envConfig from '../config/envConfig';
 
 export const middleware = async (request: NextRequest) => {
+  // const cookieStore = cookies();
   const { pathname } = request.nextUrl;
   const lang = getLanguageFromURL(pathname);
   const actualPathname = removeLanguagePrefix(pathname);
-  const session = await auth();
+  // const token = cookieStore.get(
+  //   'authjs.session-token' || '__Secure-authjs.session-token',
+  // )?.value;
 
-  console.log({ session });
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const token = await getToken({ req: request, secret: envConfig.auth.secret });
+
+  console.log('token', token);
 
   const pathNameIsMissingLocale = i18n.locales.every(
     (locale) =>
@@ -29,7 +38,7 @@ export const middleware = async (request: NextRequest) => {
 
   // TODO: private and public route handle
   if (
-    !session?.user &&
+    !token &&
     loggedInRoutes.some((path) => actualPathname.startsWith(path))
   ) {
     return NextResponse.redirect(
@@ -37,7 +46,7 @@ export const middleware = async (request: NextRequest) => {
       // new URL(`/${lang}/login`, request.nextUrl),
     );
   } else if (
-    session?.user &&
+    token &&
     loggedOutRoutes.some((path) => actualPathname.startsWith(path))
   ) {
     return NextResponse.redirect(new URL(`/${lang}/account`, request.nextUrl));
