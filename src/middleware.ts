@@ -32,7 +32,8 @@ export const middleware = (request: NextRequest) => {
     loggedInRoutes.some((path) => actualPathname.startsWith(path))
   ) {
     return NextResponse.redirect(
-      new URL(`/${lang}/login?next=${pathname}`, request.nextUrl),
+      // new URL(`/${lang}/login?next=${pathname}`, request.nextUrl),
+      new URL(`/${lang}/login`, request.nextUrl),
     );
   } else if (
     token &&
