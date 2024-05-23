@@ -3,6 +3,7 @@ import SocialLogin from '@/components/auth/SocialLogin';
 import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../../lib/dictionaries';
+import { Suspense } from 'react';
 
 type Props = {
   params: {
@@ -22,7 +23,11 @@ export default async function RegisterPage({ params: { lang } }: Props) {
         <p className="mb-6 text-sm text-gray-600">
           {dict.auth.register.shortDescription}
         </p>
-        <RegisterForm lang={lang} dict={dict} />
+
+        <Suspense>
+          <RegisterForm lang={lang} dict={dict} />
+        </Suspense>
+
         <SocialLogin dict={dict} />
 
         <p className="mt-4 text-center text-gray-600">

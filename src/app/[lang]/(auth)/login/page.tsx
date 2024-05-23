@@ -4,6 +4,7 @@ import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../../lib/dictionaries';
 import { removeLanguagePrefix } from '../../../../../utils/url';
+import { Suspense } from 'react';
 
 type Props = {
   params: {
@@ -43,7 +44,9 @@ export default async function LoginPage({
         <p className="mb-6 text-sm text-gray-600">
           {dict.auth.login.shortDescription}
         </p>
-        <LoginForm lang={lang} dict={dict} />
+        <Suspense>
+          <LoginForm lang={lang} dict={dict} />
+        </Suspense>
         <SocialLogin dict={dict} />
         <p className="mt-4 text-center text-gray-600">
           {dict.auth.login.noAccount}{' '}
