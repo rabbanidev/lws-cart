@@ -74,13 +74,6 @@ export const login = async (_prevState: unknown, formData: FormData) => {
       };
     }
 
-    cookies().set({
-      name: 'custom-cookie',
-      value: 'custom-cookie',
-      httpOnly: true,
-      path: '/',
-    });
-
     await signIn('credentials', {
       ...user,
       redirectTo: formData.get('redirectTo') as string,
