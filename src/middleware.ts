@@ -11,7 +11,11 @@ export const middleware = (request: NextRequest) => {
   const { pathname } = request.nextUrl;
   const lang = getLanguageFromURL(pathname);
   const actualPathname = removeLanguagePrefix(pathname);
-  const token = cookieStore.get('authjs.session-token')?.value;
+  const token = cookieStore.get(
+    'authjs.session-token' || '__Secure-authjs.session-token',
+  )?.value;
+
+  console.log('token', token);
 
   const pathNameIsMissingLocale = i18n.locales.every(
     (locale) =>
