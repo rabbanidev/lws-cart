@@ -22,6 +22,7 @@ export const middleware = async (request: NextRequest) => {
   const token = await getToken({ req: request, secret: envConfig.auth.secret });
 
   console.log('token', token);
+  console.log('envConfig.auth.secret', envConfig.auth.secret);
 
   const pathNameIsMissingLocale = i18n.locales.every(
     (locale) =>
