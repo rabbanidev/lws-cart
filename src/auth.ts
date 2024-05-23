@@ -2,9 +2,11 @@ import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { getUserByEmail } from '../services/user.service';
 import { comparePassword } from '../lib/bcrypt';
+import envConfig from '../config/envConfig';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
+  secret: envConfig.auth.secret,
   pages: {
     signIn: '/login',
   },
