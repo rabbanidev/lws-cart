@@ -3,15 +3,36 @@ import SocialLogin from '@/components/auth/SocialLogin';
 import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../../lib/dictionaries';
+import { removeLanguagePrefix } from '../../../../../utils/url';
 
 type Props = {
   params: {
     lang: Locale;
   };
+  searchParams: {
+    [key: string]: string;
+  };
 };
 
-export default async function LoginPage({ params: { lang } }: Props) {
+export default async function LoginPage({
+  params: { lang },
+  searchParams,
+}: Props) {
   const dict = await getDictionary(lang);
+
+  let href = '/register';
+
+  if (Object.keys(searchParams).length > 0) {
+    if (searchParams.next) {
+      href += `?next=${removeLanguagePrefix(searchParams.next)}`;
+    }
+    if (searchParams.id) {
+      href += `&id=${searchParams.id}`;
+    }
+    if (searchParams.qty) {
+      href += `&qty=${searchParams.qty}`;
+    }
+  }
 
   return (
     <div className="container py-16">
@@ -26,7 +47,7 @@ export default async function LoginPage({ params: { lang } }: Props) {
         <SocialLogin dict={dict} />
         <p className="mt-4 text-center text-gray-600">
           {dict.auth.login.noAccount}{' '}
-          <LwsLink lang={lang} href="/register" className="text-primary">
+          <LwsLink lang={lang} href={href} className="text-primary">
             {dict.auth.login.registerNow}
           </LwsLink>
         </p>

@@ -8,6 +8,7 @@ import AddToCartButton from '../shared/AddToCartButton';
 import Rating from '../shared/Rating';
 import LwsLink from '../shared/LwsLink';
 import numberFixed from '../../../utils/numberFixed';
+import { auth } from '@/auth';
 
 type Props = {
   lang: Locale;
@@ -16,6 +17,7 @@ type Props = {
 
 export default async function ProductCard({ lang, product }: Props) {
   const dict: Dictionary = await getDictionary(lang);
+  const session = await auth();
 
   const {
     id: productId,
@@ -39,7 +41,13 @@ export default async function ProductCard({ lang, product }: Props) {
         />
         <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black bg-opacity-40 opacity-0 transition group-hover:opacity-100">
           <ViewButton title={dict.product.view} />
-          <WishlistButton isDetails={false} text={dict.product.addToWishlist} />
+          <WishlistButton
+            isDetails={false}
+            text={dict.product.addToWishlist}
+            isLoggedIn={session?.user ? true : false}
+            productId={productId}
+            lang={lang}
+          />
         </div>
       </div>
       <div className="px-4 pb-3 pt-4">

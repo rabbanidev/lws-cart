@@ -5,6 +5,7 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../lib/dictionaries';
 import { Dictionary, Product as IProduct } from '../../../../types';
 import numberFixed from '../../../../utils/numberFixed';
+import { auth } from '@/auth';
 
 type Props = {
   lang: Locale;
@@ -13,8 +14,10 @@ type Props = {
 
 export default async function DetailsContent({ lang, product }: Props) {
   const dict: Dictionary = await getDictionary(lang);
+  const session = await auth();
 
   const {
+    id: productId,
     name,
     reviews,
     availability,
@@ -80,7 +83,12 @@ export default async function DetailsContent({ lang, product }: Props) {
 
       <p className="mt-4 text-gray-600">{shortDescription}</p>
 
-      <DetailsAction qtyTitle={dict.product.qty} />
+      <DetailsAction
+        qtyTitle={dict.product.qty}
+        lang={lang}
+        isLoggedIn={session?.user ? true : false}
+        productId={productId}
+      />
       <SocialShare />
     </div>
   );

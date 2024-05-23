@@ -1,14 +1,14 @@
 'use server';
 
-import { redirect } from 'next/navigation';
 import envConfig from '../../config/envConfig';
 import { loginSchema, registerSchema } from '../../lib/zod';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export const register = async (_prevState: unknown, formData: FormData) => {
   let isRedirect = false;
-
   try {
     const user = {
       name: formData.get('name'),
@@ -35,14 +35,20 @@ export const register = async (_prevState: unknown, formData: FormData) => {
 
     if (res.status === 201) {
       isRedirect = true;
+      // const formData = new FormData();
+      // formData.append('email', `${user.email}`);
+      // formData.append('password', `${user.password}`);
+      // formData.append('register', 'yes');
+      // const loginRes = await login(null, formData);
+      // return { message: loginRes?.message };
+    } else {
+      isRedirect = false;
+      return {
+        error: data?.message || 'Something went wrong!',
+      };
     }
-
-    return {
-      error: data?.message || 'Something went wrong!',
-    };
   } catch (error: unknown) {
     isRedirect = false;
-
     if (error instanceof Error) {
       return {
         error: error.message || 'Something went wrong!',
@@ -50,7 +56,7 @@ export const register = async (_prevState: unknown, formData: FormData) => {
     }
   } finally {
     if (isRedirect) {
-      redirect(`/${formData.get('lang')}/login`);
+      redirect(formData.get('redirectTo') as string);
     }
   }
 };
@@ -70,10 +76,10 @@ export const login = async (_prevState: unknown, formData: FormData) => {
 
     await signIn('credentials', {
       ...user,
-      redirectTo: `/${formData.get('lang')}`,
+      redirectTo: formData.get('redirectTo') as string,
     });
 
-    return undefined;
+    return { message: 'success' };
   } catch (error: unknown) {
     if (error instanceof AuthError) {
       // TODO: Error handling
@@ -86,4 +92,10 @@ export const login = async (_prevState: unknown, formData: FormData) => {
     }
     throw error;
   }
+};
+
+export const getToken = () => {
+  const cookieStore = cookies();
+  const token = cookieStore.get('authjs.session-token')?.value;
+  return token;
 };

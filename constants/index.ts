@@ -1,3 +1,4 @@
+import { loggedInRoutes, loggedOutRoutes } from './routes';
 import { navbarItems } from './others';
 
-export { navbarItems };
+export { navbarItems, loggedInRoutes, loggedOutRoutes };

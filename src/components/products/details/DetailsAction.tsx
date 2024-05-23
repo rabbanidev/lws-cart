@@ -2,13 +2,22 @@
 
 import AddToCartButton from '@/components/shared/AddToCartButton';
 import WishlistButton from '@/components/shared/WishlistButton';
+import { Locale } from '@/i18n.config';
 import { useState } from 'react';
 
 type Props = {
   qtyTitle: string;
+  lang: Locale;
+  isLoggedIn: boolean;
+  productId: string;
 };
 
-export default function DetailsAction({ qtyTitle }: Props) {
+export default function DetailsAction({
+  qtyTitle,
+  isLoggedIn,
+  productId,
+  lang,
+}: Props) {
   const [quantity, setQuantity] = useState(1);
 
   return (
@@ -38,7 +47,13 @@ export default function DetailsAction({ qtyTitle }: Props) {
 
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
         <AddToCartButton isDetails text="Add To Cart" />
-        <WishlistButton isDetails text="Wishlist" />
+        <WishlistButton
+          isDetails
+          text="Wishlist"
+          isLoggedIn={isLoggedIn}
+          productId={productId}
+          lang={lang}
+        />
       </div>
     </>
   );

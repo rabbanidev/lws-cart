@@ -6,6 +6,8 @@ import { useFormState } from 'react-dom';
 import { login } from '@/actions/auth';
 import ErrorMessage from '@/components/UI/Error';
 import SubmitButton from '@/components/UI/SubmitButton';
+import { useSearchParams } from 'next/navigation';
+import { removeLanguagePrefix } from '../../../utils/url';
 
 type Props = {
   lang: Locale;
@@ -13,12 +15,24 @@ type Props = {
 };
 
 export default function LoginForm({ lang, dict }: Props) {
-  const [state, formAction] = useFormState(login, null);
+  const searchParams = useSearchParams();
 
+  const [state, formAction] = useFormState(login, null);
   const { email = [], password = [] } = state?.errors || {};
 
+  let redirectTo = `/${lang}`;
+  if (searchParams.get('next')) {
+    redirectTo += `${removeLanguagePrefix(searchParams.get('next') as string)}`;
+  }
+  if (searchParams.get('id')) {
+    redirectTo += `?id=${searchParams.get('id')}`;
+  }
+  if (searchParams.get('qty')) {
+    redirectTo += `&qty=${searchParams.get('qty')}`;
+  }
+
   const handleAction = (formData: FormData) => {
-    formData.append('lang', lang);
+    formData.append('redirectTo', redirectTo);
     formAction(formData);
   };
 
@@ -35,6 +49,7 @@ export default function LoginForm({ lang, dict }: Props) {
             id="email"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="youremail.@domain.com"
+            defaultValue="rabbani.cse.eub@gmail.com"
           />
           {email?.length > 0 && <ErrorMessage message={email[0]} />}
         </div>
@@ -48,6 +63,7 @@ export default function LoginForm({ lang, dict }: Props) {
             id="password"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="*******"
+            defaultValue="123456"
           />
           {password?.length > 0 && <ErrorMessage message={password[0]} />}
         </div>
