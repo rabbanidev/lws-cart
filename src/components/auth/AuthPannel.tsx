@@ -12,7 +12,7 @@ export default async function AuthPannel({ lang }: Props) {
   const { navbar } = await getDictionary(lang);
   const session = await auth();
 
-  console.log('sess', session);
+  // console.log('sess', session);
 
   return (
     <>

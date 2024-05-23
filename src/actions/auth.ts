@@ -74,11 +74,6 @@ export const login = async (_prevState: unknown, formData: FormData) => {
       };
     }
 
-    console.log(
-      "formData.get('redirectTo') as string",
-      formData.get('redirectTo') as string,
-    );
-
     await signIn('credentials', {
       ...user,
       redirectTo: formData.get('redirectTo') as string,

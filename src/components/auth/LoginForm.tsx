@@ -32,7 +32,6 @@ export default function LoginForm({ lang, dict }: Props) {
   }
 
   const handleAction = (formData: FormData) => {
-    console.log('redirectTo', redirectTo);
     formData.append('redirectTo', redirectTo);
     formAction(formData);
   };
