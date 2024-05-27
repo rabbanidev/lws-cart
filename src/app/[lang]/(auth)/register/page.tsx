@@ -27,8 +27,9 @@ export default async function RegisterPage({ params: { lang } }: Props) {
         <Suspense>
           <RegisterForm lang={lang} dict={dict} />
         </Suspense>
-
-        <SocialLogin dict={dict} />
+        <Suspense>
+          <SocialLogin dict={dict} lang={lang} />
+        </Suspense>
 
         <p className="mt-4 text-center text-gray-600">
           {dict.auth.register.noAccount}{' '}

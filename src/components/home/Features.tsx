@@ -1,14 +1,8 @@
 import Image from 'next/image';
+import { Dictionary } from '../../../types/index';
 
 type IProps = {
-  dict: {
-    shipping: string;
-    orderOver: string;
-    moneyReturns: string;
-    moneyReturns30Day: string;
-    support: string;
-    customerSupport: string;
-  };
+  dict: Dictionary;
 };
 
 export default function Features({ dict }: IProps) {

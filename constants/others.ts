@@ -1,4 +1,4 @@
-import { NavbarItem } from '../types';
+import { NavbarItem } from '../types/index';
 
 export const navbarItems: NavbarItem[] = [
   {

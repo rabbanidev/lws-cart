@@ -4,4 +4,5 @@ export type User = {
   email: string;
   password: string;
   image?: string;
+  provider?: 'google' | 'facebook';
 };

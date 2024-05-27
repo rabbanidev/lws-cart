@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Dictionary, Product as IProduct } from '../../../types';
+import { Dictionary, Product as IProduct } from '../../../types/index';
 import { getDictionary } from '../../../lib/dictionaries';
 import { Locale } from '@/i18n.config';
 import ViewButton from '../shared/ViewButton';

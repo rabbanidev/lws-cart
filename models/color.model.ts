@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { Color as IColor } from '../types';
+import { Color as IColor } from '../types/index';
 
 const colorSchema = new Schema<IColor>(
   {

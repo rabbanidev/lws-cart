@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { Size as ISize } from '../types';
+import { Size as ISize } from '../types/index';
 
 const sizeSchema = new Schema<ISize>(
   {

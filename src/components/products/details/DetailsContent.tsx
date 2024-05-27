@@ -3,7 +3,7 @@ import DetailsAction from './DetailsAction';
 import SocialShare from './SocialShare';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../lib/dictionaries';
-import { Dictionary, Product as IProduct } from '../../../../types';
+import { Dictionary, Product as IProduct } from '../../../../types/index';
 import numberFixed from '../../../../utils/numberFixed';
 import { auth } from '@/auth';
 

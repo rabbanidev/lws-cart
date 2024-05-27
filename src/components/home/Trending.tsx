@@ -1,7 +1,7 @@
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../lib/dictionaries';
 import ProductCard from '../products/ProductCard';
-import { Dictionary, Product as IProduct } from '../../../types';
+import { Dictionary, Product as IProduct } from '../../../types/index';
 import { getTrendingProducts } from '../../../services/product.service';
 
 type Props = {

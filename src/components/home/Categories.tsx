@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Category, Dictionary } from '../../../types';
+import { Category, Dictionary } from '../../../types/index';
 import LwsLink from '../shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { getCategories } from '../../../services/category.service';

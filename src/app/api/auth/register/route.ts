@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 import dbConnect from '../../../../../config/dbConfig';
 import User from '../../../../../models/user.model';
 import { hashPassword } from '../../../../../lib/bcrypt';
-import { User as IUser } from '../../../../../types';
+import { User as IUser } from '../../../../../types/index';
 import { replaceMongoIdInObject } from '../../../../../utils/mongo';
 
 export async function POST(request: NextRequest) {

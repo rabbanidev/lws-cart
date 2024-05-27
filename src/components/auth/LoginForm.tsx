@@ -1,7 +1,7 @@
 'use client';
 
 import { Locale } from '@/i18n.config';
-import { Dictionary } from '../../../types';
+import { Dictionary } from '../../../types/index';
 import { useFormState } from 'react-dom';
 import { login } from '@/actions/auth';
 import ErrorMessage from '@/components/UI/Error';

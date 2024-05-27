@@ -1,9 +1,9 @@
 import dbConnect from '../config/dbConfig';
 import User from '../models/user.model';
-import { User as IUser } from '../types';
+import { User as IUser } from '../types/index';
 
 export const getUserByEmail = async (email: string): Promise<IUser | null> => {
   await dbConnect();
 
-  return await User.findOne({ email });
+  return await User.findOne({ email }).lean();
 };

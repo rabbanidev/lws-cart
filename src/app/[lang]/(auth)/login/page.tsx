@@ -47,7 +47,9 @@ export default async function LoginPage({
         <Suspense>
           <LoginForm lang={lang} dict={dict} />
         </Suspense>
-        <SocialLogin dict={dict} />
+        <Suspense>
+          <SocialLogin dict={dict} lang={lang} />
+        </Suspense>
         <p className="mt-4 text-center text-gray-600">
           {dict.auth.login.noAccount}{' '}
           <LwsLink lang={lang} href={href} className="text-primary">

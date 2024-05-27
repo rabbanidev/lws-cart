@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
-import { User as IUser } from '../types';
+import { User as IUser } from '../types/index';
 
 const userSchema = new Schema<IUser>(
   {
@@ -17,6 +17,11 @@ const userSchema = new Schema<IUser>(
     },
     image: {
       type: String,
+      required: false,
+    },
+    provider: {
+      type: String,
+      enum: ['google', 'facebook'],
       required: false,
     },
   },

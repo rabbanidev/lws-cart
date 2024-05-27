@@ -6,7 +6,7 @@ import AuthPannel from '@/components/auth/AuthPannel';
 import LangSwitcher from '@/components/shared/LangSwitcher';
 import { navbarItems } from '../../../constants';
 import { getDictionary } from '../../../lib/dictionaries';
-import type { Category, NavbarItem } from '../../../types';
+import type { Category, NavbarItem } from '../../../types/index';
 import { getCategories } from '../../../services/category.service';
 
 type Props = {

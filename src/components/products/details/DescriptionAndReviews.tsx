@@ -1,7 +1,7 @@
 'use client';
 
 import Tabs from '@/components/UI/Tabs';
-import { Dictionary, Review } from '../../../../types';
+import { Dictionary, Review } from '../../../../types/index';
 import { useState } from 'react';
 import Reviews from './Reviews';
 

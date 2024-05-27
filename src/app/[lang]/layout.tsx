@@ -3,9 +3,9 @@ import { Inter } from 'next/font/google';
 import TopNavbar from '@/components/shared/TopNavbar';
 import { Locale } from '@/i18n.config';
 import Navbar from '@/components/shared/Navbar';
+import Footer from '@/components/shared/Footer';
 
 import '../globals.css';
-import Footer from '@/components/shared/Footer';
 
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'bn' }];

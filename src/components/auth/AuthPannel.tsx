@@ -19,7 +19,6 @@ export default async function AuthPannel({ lang }: Props) {
       {session?.user ? (
         <Signout lang={lang} user={session.user} />
       ) : (
-        // <Signout lang={lang} user={session.user} />
         <LwsLink
           lang={lang}
           href="/login"

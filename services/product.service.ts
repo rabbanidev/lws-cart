@@ -4,7 +4,7 @@ import Review from '../models/review.model';
 import Size from '../models/size.model';
 import User from '../models/user.model';
 import Product from '../models/product.model';
-import { Product as IProduct } from '../types';
+import { Product as IProduct } from '../types/index';
 import { replaceMongoIdInArray, replaceMongoIdInObject } from '../utils/mongo';
 import Category from '../models/category.model';
 

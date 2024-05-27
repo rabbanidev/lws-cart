@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormState } from 'react-dom';
-import { Dictionary } from '../../../types';
+import { Dictionary } from '../../../types/index';
 import { register } from '@/actions/auth';
 import ErrorMessage from '@/components/UI/Error';
 import SubmitButton from '@/components/UI/SubmitButton';

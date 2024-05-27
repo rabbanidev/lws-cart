@@ -6,7 +6,7 @@ import DetailsContent from '@/components/products/details/DetailsContent';
 import DescriptionAndReviews from '@/components/products/details/DescriptionAndReviews';
 import RelatedProducts from '@/components/products/details/RelatedProducts';
 import { getProduct } from '../../../../../../services/product.service';
-import { Product as IProduct } from '../../../../../../types';
+import { Product as IProduct } from '../../../../../../types/index';
 import { Suspense } from 'react';
 import { ProductTopArrivalSkeleton } from '@/components/skeleton/ProductsSkeleton';
 

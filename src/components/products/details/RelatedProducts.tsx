@@ -1,6 +1,6 @@
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../lib/dictionaries';
-import { Dictionary } from '../../../../types';
+import { Dictionary } from '../../../../types/index';
 
 type Props = {
   lang: Locale;

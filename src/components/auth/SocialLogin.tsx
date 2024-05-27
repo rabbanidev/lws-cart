@@ -1,10 +1,37 @@
-import { Dictionary } from '../../../types';
+'use client';
+
+import { googleSignin } from '@/actions/auth';
+import { Dictionary } from '../../../types/index';
+import { useFormState } from 'react-dom';
+import { Locale } from '@/i18n.config';
+import { useSearchParams } from 'next/navigation';
+import { removeLanguagePrefix } from '../../../utils/url';
 
 type Props = {
+  lang: Locale;
   dict: Dictionary;
 };
 
-export default function SocialLogin({ dict }: Props) {
+export default function SocialLogin({ lang, dict }: Props) {
+  const searchParams = useSearchParams();
+  const [, googleFormAction] = useFormState(googleSignin, null);
+
+  let redirectTo = `/${lang}`;
+  if (searchParams.get('next')) {
+    redirectTo += `${removeLanguagePrefix(searchParams.get('next') as string)}`;
+  }
+  if (searchParams.get('id')) {
+    redirectTo += `?id=${searchParams.get('id')}`;
+  }
+  if (searchParams.get('qty')) {
+    redirectTo += `&qty=${searchParams.get('qty')}`;
+  }
+
+  const handleGoogleSignin = (formData: FormData) => {
+    formData.append('redirectTo', redirectTo);
+    googleFormAction(formData);
+  };
+
   return (
     <>
       <div className="relative mt-6 flex justify-center">
@@ -20,12 +47,14 @@ export default function SocialLogin({ dict }: Props) {
         >
           {dict.auth.social.fb}
         </a>
-        <a
-          href="#"
-          className="w-1/2 rounded bg-red-600 py-2 text-center font-roboto text-sm font-medium uppercase text-white hover:bg-red-500"
-        >
-          {dict.auth.social.google}
-        </a>
+        <form action={handleGoogleSignin} className="w-1/2 ">
+          <button
+            type="submit"
+            className="w-full rounded bg-red-600 py-2 text-center font-roboto text-sm font-medium uppercase text-white hover:bg-red-500"
+          >
+            {dict.auth.social.google}
+          </button>
+        </form>
       </div>
     </>
   );

@@ -1,6 +1,6 @@
 import dbConnect from '../config/dbConfig';
 import Category from '../models/category.model';
-import { Category as ICategory } from '../types';
+import { Category as ICategory } from '../types/index';
 import { replaceMongoIdInArray } from '../utils/mongo';
 
 export const getCategories = async (): Promise<ICategory[] | []> => {

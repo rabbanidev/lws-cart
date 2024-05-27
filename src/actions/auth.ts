@@ -94,6 +94,11 @@ export const login = async (_prevState: unknown, formData: FormData) => {
   }
 };
 
+export const googleSignin = async (_prevState: unknown, formData: FormData) => {
+  console.log("formData.get('redirectTo')", formData.get('redirectTo'));
+  await signIn('google', { redirectTo: formData.get('redirectTo') as string });
+};
+
 export const getToken = () => {
   const cookieStore = cookies();
   const token = cookieStore.get('authjs.session-token')?.value;
