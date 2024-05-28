@@ -1,3 +1,5 @@
+import { AuthSession } from './auth';
+import { WishlistItem } from './wishlist';
 import { Product } from './product';
 import { Review } from './review';
 import { Color } from './color';
@@ -16,4 +18,6 @@ export type {
   Color,
   Review,
   Product,
+  WishlistItem,
+  AuthSession,
 };

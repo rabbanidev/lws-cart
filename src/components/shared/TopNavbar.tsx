@@ -6,6 +6,7 @@ import { FaRegUser } from 'react-icons/fa';
 import type { Locale } from '@/i18n.config';
 import LwsLink from './LwsLink';
 import { getDictionary } from '../../../lib/dictionaries';
+import { getWishlistItemsAction } from '@/actions/wishlist';
 
 type Props = {
   lang: Locale;
@@ -13,6 +14,8 @@ type Props = {
 
 export default async function TopNavbar({ lang }: Props) {
   const dict = await getDictionary(lang);
+
+  const wishlist = await getWishlistItemsAction();
 
   return (
     <header className="bg-white py-4 shadow-sm">
@@ -56,7 +59,7 @@ export default async function TopNavbar({ lang }: Props) {
               {dict.topNavbar.wishlist}
             </div>
             <div className="absolute -top-2 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
-              8
+              {wishlist?.items?.length || 0}
             </div>
           </LwsLink>
           <LwsLink

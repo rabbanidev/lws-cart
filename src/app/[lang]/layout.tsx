@@ -4,8 +4,10 @@ import TopNavbar from '@/components/shared/TopNavbar';
 import { Locale } from '@/i18n.config';
 import Navbar from '@/components/shared/Navbar';
 import Footer from '@/components/shared/Footer';
+import { ToastContainer } from 'react-toastify';
 
 import '../globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export async function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'bn' }];
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   description: '',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: { lang },
 }: Readonly<{
@@ -32,6 +34,7 @@ export default function RootLayout({
         <Navbar lang={lang} />
         <main>{children}</main>
         <Footer />
+        <ToastContainer position="bottom-right" />
       </body>
     </html>
   );

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import Rating from '@/components/shared/Rating';
 import DetailsAction from './DetailsAction';
 import SocialShare from './SocialShare';
@@ -6,6 +8,7 @@ import { getDictionary } from '../../../../lib/dictionaries';
 import { Dictionary, Product as IProduct } from '../../../../types/index';
 import numberFixed from '../../../../utils/numberFixed';
 import { auth } from '@/auth';
+import { getWishlistItemsAction } from '@/actions/wishlist';
 
 type Props = {
   lang: Locale;
@@ -15,6 +18,7 @@ type Props = {
 export default async function DetailsContent({ lang, product }: Props) {
   const dict: Dictionary = await getDictionary(lang);
   const session = await auth();
+  const wishlist = await getWishlistItemsAction();
 
   const {
     id: productId,
@@ -28,6 +32,11 @@ export default async function DetailsContent({ lang, product }: Props) {
     discountPrice,
     shortDescription,
   } = product || {};
+
+  const currentProduct = wishlist.items?.find(
+    //@ts-ignore
+    (item) => item.product._id === productId,
+  );
 
   return (
     <div>
@@ -86,8 +95,9 @@ export default async function DetailsContent({ lang, product }: Props) {
       <DetailsAction
         qtyTitle={dict.product.qty}
         lang={lang}
-        isLoggedIn={session?.user ? true : false}
         productId={productId}
+        session={session}
+        alreadyAdded={Boolean(currentProduct)}
       />
       <SocialShare />
     </div>

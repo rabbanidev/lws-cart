@@ -4,19 +4,22 @@ import AddToCartButton from '@/components/shared/AddToCartButton';
 import WishlistButton from '@/components/shared/WishlistButton';
 import { Locale } from '@/i18n.config';
 import { useState } from 'react';
+import { AuthSession } from '../../../../types/index';
 
 type Props = {
   qtyTitle: string;
   lang: Locale;
-  isLoggedIn: boolean;
   productId: string;
+  session: AuthSession | null;
+  alreadyAdded?: boolean;
 };
 
 export default function DetailsAction({
   qtyTitle,
-  isLoggedIn,
   productId,
   lang,
+  session,
+  alreadyAdded,
 }: Props) {
   const [quantity, setQuantity] = useState(1);
 
@@ -50,9 +53,10 @@ export default function DetailsAction({
         <WishlistButton
           isDetails
           text="Wishlist"
-          isLoggedIn={isLoggedIn}
           productId={productId}
           lang={lang}
+          session={session}
+          alreadyAdded={alreadyAdded}
         />
       </div>
     </>

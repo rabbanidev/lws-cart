@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import Image from 'next/image';
 import { Dictionary, Product as IProduct } from '../../../types/index';
 import { getDictionary } from '../../../lib/dictionaries';
@@ -42,11 +43,10 @@ export default async function ProductCard({ lang, product }: Props) {
         <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black bg-opacity-40 opacity-0 transition group-hover:opacity-100">
           <ViewButton title={dict.product.view} />
           <WishlistButton
-            isDetails={false}
             text={dict.product.addToWishlist}
-            isLoggedIn={session?.user ? true : false}
             productId={productId}
             lang={lang}
+            session={session}
           />
         </div>
       </div>
