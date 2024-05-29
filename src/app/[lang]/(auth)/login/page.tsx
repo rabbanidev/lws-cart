@@ -3,7 +3,7 @@ import SocialLogin from '@/components/auth/SocialLogin';
 import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../../lib/dictionaries';
-import { removeLanguagePrefix } from '../../../../../utils/url';
+import { redirectUrl, removeLanguagePrefix } from '../../../../../utils/url';
 import { Suspense } from 'react';
 
 type Props = {
@@ -21,18 +21,21 @@ export default async function LoginPage({
 }: Props) {
   const dict = await getDictionary(lang);
 
-  let href = '/register';
+  let redirectTo = `/register`;
 
   if (Object.keys(searchParams).length > 0) {
     if (searchParams.next) {
-      href += `?next=${removeLanguagePrefix(searchParams.next)}`;
+      redirectTo += `?next=${removeLanguagePrefix(searchParams.next)}`;
     }
-    if (searchParams.id) {
-      href += `&id=${searchParams.id}`;
-    }
-    if (searchParams.qty) {
-      href += `&qty=${searchParams.qty}`;
-    }
+
+    redirectTo = redirectUrl(redirectTo, searchParams, 'page');
+
+    // if (searchParams.id) {
+    //   href += `&id=${searchParams.id}`;
+    // }
+    // if (searchParams.qty) {
+    //   href += `&qty=${searchParams.qty}`;
+    // }
   }
 
   return (
@@ -52,7 +55,7 @@ export default async function LoginPage({
         </Suspense>
         <p className="mt-4 text-center text-gray-600">
           {dict.auth.login.noAccount}{' '}
-          <LwsLink lang={lang} href={href} className="text-primary">
+          <LwsLink lang={lang} href={redirectTo} className="text-primary">
             {dict.auth.login.registerNow}
           </LwsLink>
         </p>

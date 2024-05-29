@@ -61,8 +61,7 @@ const productSchema = new Schema<IProduct>(
     ],
     stock: {
       type: Number,
-      min: 1,
-      required: true,
+      min: 0,
     },
     soldCounts: {
       type: Number,

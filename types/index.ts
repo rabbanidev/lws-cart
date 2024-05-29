@@ -1,3 +1,4 @@
+import { Cart } from './cart';
 import { AuthSession } from './auth';
 import { WishlistItem } from './wishlist';
 import { Product } from './product';
@@ -20,4 +21,5 @@ export type {
   Product,
   WishlistItem,
   AuthSession,
+  Cart,
 };

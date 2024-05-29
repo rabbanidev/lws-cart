@@ -93,6 +93,8 @@
     "category": "Category",
     "sku": "SKU",
     "qty": "quantity",
+    "colors": "colors",
+    "sizes": "sizes",
     "reviews": "Reviews",
     "noReview": "There is no reviews",
     "description": "Product details",

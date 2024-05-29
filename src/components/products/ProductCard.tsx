@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import Image from 'next/image';
-import { Dictionary, Product as IProduct } from '../../../types/index';
+import {
+  Color,
+  Dictionary,
+  Product as IProduct,
+  Size,
+} from '../../../types/index';
 import { getDictionary } from '../../../lib/dictionaries';
 import { Locale } from '@/i18n.config';
 import ViewButton from '../shared/ViewButton';
@@ -10,6 +15,7 @@ import Rating from '../shared/Rating';
 import LwsLink from '../shared/LwsLink';
 import numberFixed from '../../../utils/numberFixed';
 import { auth } from '@/auth';
+import { replaceMongoIdInObject } from '../../../utils/mongo';
 
 type Props = {
   lang: Locale;
@@ -28,6 +34,8 @@ export default async function ProductCard({ lang, product }: Props) {
     discountPrice,
     reviews,
     rating,
+    colors,
+    sizes,
   } = product || {};
 
   return (
@@ -76,7 +84,15 @@ export default async function ProductCard({ lang, product }: Props) {
           </div>
         </div>
       </div>
-      <AddToCartButton isDetails={false} text={dict.product.addToCart} />
+      <AddToCartButton
+        text={dict.product.addToCart}
+        session={session}
+        productId={productId}
+        lang={lang}
+        quantity={1}
+        color={replaceMongoIdInObject(colors[0]) as Color}
+        size={replaceMongoIdInObject(sizes[0]) as Size}
+      />
     </div>
   );
 }

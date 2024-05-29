@@ -7,6 +7,7 @@ import type { Locale } from '@/i18n.config';
 import LwsLink from './LwsLink';
 import { getDictionary } from '../../../lib/dictionaries';
 import { getWishlistItemsAction } from '@/actions/wishlist';
+import { getFromCartsAction } from '@/actions/cart';
 
 type Props = {
   lang: Locale;
@@ -14,8 +15,15 @@ type Props = {
 
 export default async function TopNavbar({ lang }: Props) {
   const dict = await getDictionary(lang);
-
   const wishlist = await getWishlistItemsAction();
+  const carts = await getFromCartsAction();
+
+  const totalQuantity =
+    carts.items &&
+    carts.items.length > 0 &&
+    carts.items.reduce(function (acc, curr) {
+      return acc + curr.quantity;
+    }, 0);
 
   return (
     <header className="bg-white py-4 shadow-sm">
@@ -72,7 +80,7 @@ export default async function TopNavbar({ lang }: Props) {
             </div>
             <div className="mt-1 text-xs leading-3">{dict.topNavbar.cart}</div>
             <div className="absolute -right-3 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs text-white">
-              2
+              {totalQuantity || 0}
             </div>
           </LwsLink>
           <LwsLink

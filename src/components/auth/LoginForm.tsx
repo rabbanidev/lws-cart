@@ -7,7 +7,7 @@ import { login } from '@/actions/auth';
 import ErrorMessage from '@/components/UI/Error';
 import SubmitButton from '@/components/UI/SubmitButton';
 import { useSearchParams } from 'next/navigation';
-import { removeLanguagePrefix } from '../../../utils/url';
+import { redirectUrl, removeLanguagePrefix } from '../../../utils/url';
 
 type Props = {
   lang: Locale;
@@ -24,12 +24,17 @@ export default function LoginForm({ lang, dict }: Props) {
   if (searchParams.get('next')) {
     redirectTo += `${removeLanguagePrefix(searchParams.get('next') as string)}`;
   }
-  if (searchParams.get('id')) {
-    redirectTo += `?id=${searchParams.get('id')}`;
-  }
-  if (searchParams.get('qty')) {
-    redirectTo += `&qty=${searchParams.get('qty')}`;
-  }
+
+  redirectTo = redirectUrl(redirectTo, searchParams);
+
+  // if (searchParams.get('id')) {
+  //   redirectTo += `?id=${searchParams.get('id')}`;
+  // }
+  // if (searchParams.get('qty')) {
+  //   redirectTo += `&qty=${searchParams.get('qty')}`;
+  // }
+
+  // console.log('redirectTo', redirectTo);
 
   const handleAction = (formData: FormData) => {
     formData.append('redirectTo', redirectTo);

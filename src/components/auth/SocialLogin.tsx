@@ -5,7 +5,7 @@ import { Dictionary } from '../../../types/index';
 import { useFormState } from 'react-dom';
 import { Locale } from '@/i18n.config';
 import { useSearchParams } from 'next/navigation';
-import { removeLanguagePrefix } from '../../../utils/url';
+import { redirectUrl, removeLanguagePrefix } from '../../../utils/url';
 
 type Props = {
   lang: Locale;
@@ -20,12 +20,15 @@ export default function SocialLogin({ lang, dict }: Props) {
   if (searchParams.get('next')) {
     redirectTo += `${removeLanguagePrefix(searchParams.get('next') as string)}`;
   }
-  if (searchParams.get('id')) {
-    redirectTo += `?id=${searchParams.get('id')}`;
-  }
-  if (searchParams.get('qty')) {
-    redirectTo += `&qty=${searchParams.get('qty')}`;
-  }
+
+  redirectTo = redirectUrl(redirectTo, searchParams);
+
+  // if (searchParams.get('id')) {
+  //   redirectTo += `?id=${searchParams.get('id')}`;
+  // }
+  // if (searchParams.get('qty')) {
+  //   redirectTo += `&qty=${searchParams.get('qty')}`;
+  // }
 
   const handleGoogleSignin = (formData: FormData) => {
     formData.append('redirectTo', redirectTo);

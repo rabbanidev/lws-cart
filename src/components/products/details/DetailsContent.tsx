@@ -9,6 +9,8 @@ import { Dictionary, Product as IProduct } from '../../../../types/index';
 import numberFixed from '../../../../utils/numberFixed';
 import { auth } from '@/auth';
 import { getWishlistItemsAction } from '@/actions/wishlist';
+import { getFromCartsAction } from '@/actions/cart';
+import { replaceMongoIdInObject } from '../../../../utils/mongo';
 
 type Props = {
   lang: Locale;
@@ -19,6 +21,7 @@ export default async function DetailsContent({ lang, product }: Props) {
   const dict: Dictionary = await getDictionary(lang);
   const session = await auth();
   const wishlist = await getWishlistItemsAction();
+  const carts = await getFromCartsAction();
 
   const {
     id: productId,
@@ -31,12 +34,22 @@ export default async function DetailsContent({ lang, product }: Props) {
     price,
     discountPrice,
     shortDescription,
+    stock,
   } = product || {};
 
-  const currentProduct = wishlist.items?.find(
-    //@ts-ignore
-    (item) => item.product._id === productId,
-  );
+  const wishlistItem =
+    wishlist.items &&
+    wishlist.items.find((item) => {
+      const cartProduct = replaceMongoIdInObject(item.product) as IProduct;
+      return cartProduct.id === productId;
+    });
+
+  const cartItem =
+    carts.items &&
+    carts.items.find((item) => {
+      const cartProduct = replaceMongoIdInObject(item.product) as IProduct;
+      return cartProduct.id === productId;
+    });
 
   return (
     <div>
@@ -51,7 +64,7 @@ export default async function DetailsContent({ lang, product }: Props) {
         <p className="space-x-2 font-semibold text-gray-800">
           <span>{dict.product.availability}: </span>
           <span className={availability ? 'text-green-600' : 'text-primary'}>
-            {availability}
+            {availability} ({stock})
           </span>
         </p>
         <p className="space-x-2">
@@ -93,11 +106,12 @@ export default async function DetailsContent({ lang, product }: Props) {
       <p className="mt-4 text-gray-600">{shortDescription}</p>
 
       <DetailsAction
-        qtyTitle={dict.product.qty}
+        dict={dict}
         lang={lang}
-        productId={productId}
+        product={product}
         session={session}
-        alreadyAdded={Boolean(currentProduct)}
+        alreadyAddedInWishlist={Boolean(wishlistItem)}
+        cartItem={cartItem}
       />
       <SocialShare />
     </div>

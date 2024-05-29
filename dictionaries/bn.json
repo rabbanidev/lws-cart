@@ -93,6 +93,8 @@
     "category": "ক্যাটেগরি",
     "sku": "SKU",
     "qty": "পরিমাণ",
+    "colors": "কালার",
+    "sizes": "সাইজ",
     "reviews": "রিভিউ",
     "noReview": "কোনো রিভিউ নেই",
     "description": "প্রোডাক্টস এর বিবরণ",

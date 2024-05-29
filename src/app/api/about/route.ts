@@ -15,14 +15,7 @@ export async function GET() {
   await User.find({});
   await Category.find({});
 
-  const products = await Product.find({
-    // categories: {
-    //   $in: ['664b36c820a6ecee354340e3'],
-    // },
-    // sizes: {
-    //   $in: ['664b458220a6ecee355d0094'],
-    // },
-  })
+  const products = await Product.find({})
     .populate({
       path: 'categories',
       select: 'name slug',
