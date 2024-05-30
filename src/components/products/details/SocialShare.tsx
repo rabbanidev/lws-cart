@@ -6,10 +6,10 @@ import {
   LinkedinShareButton,
   TwitterShareButton,
 } from 'react-share';
-import envConfig from '../../../../config/envConfig';
+// import envConfig from '../../../../config/envConfig';
 
 export default function SocialShare({ id }: { id: string }) {
-  const url = `${envConfig.client_url_public}/products/${id}`;
+  const url = `https://lws-cart.vercel.app/products/${id}`;
 
   return (
     <div className="mt-4 flex gap-3">
