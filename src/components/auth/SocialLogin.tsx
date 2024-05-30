@@ -25,7 +25,10 @@ export default function SocialLogin({ lang, dict }: Props) {
   const redirectTo = generateRedirectUrlAfterLogin(nextUrl);
 
   const handleGoogleSignin = (formData: FormData) => {
-    formData.append('redirectTo', `/${lang}${redirectTo}`);
+    formData.append(
+      'redirectTo',
+      redirectTo ? `/${lang}${redirectTo}` : `/${lang}`,
+    );
     googleFormAction(formData);
   };
 

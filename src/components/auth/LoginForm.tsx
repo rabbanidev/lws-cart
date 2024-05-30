@@ -29,7 +29,10 @@ export default function LoginForm({ lang, dict }: Props) {
   const redirectTo = generateRedirectUrlAfterLogin(nextUrl);
 
   const handleAction = (formData: FormData) => {
-    formData.append('redirectTo', `/${lang}${redirectTo}`);
+    formData.append(
+      'redirectTo',
+      redirectTo ? `/${lang}${redirectTo}` : `/${lang}`,
+    );
     formAction(formData);
   };
 

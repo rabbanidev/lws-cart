@@ -66,12 +66,22 @@ export default async function Navbar({ lang }: Props) {
 
         <div className="flex flex-grow items-center justify-between py-5 md:pl-12">
           <div className="flex items-center space-x-6 capitalize">
-            {langNavbarItems.map((navItem) => (
+            {langNavbarItems.slice(0, 1).map((navItem) => (
               <LwsLink
                 key={navItem.text}
                 lang={lang}
                 href={navItem.path}
                 className="text-gray-200 transition hover:text-white"
+              >
+                {navItem.text}
+              </LwsLink>
+            ))}
+            {langNavbarItems.slice(1).map((navItem) => (
+              <LwsLink
+                key={navItem.text}
+                lang={lang}
+                href={navItem.path}
+                className="hidden text-gray-200 transition hover:text-white md:block"
               >
                 {navItem.text}
               </LwsLink>
