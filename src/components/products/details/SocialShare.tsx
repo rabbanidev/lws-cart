@@ -1,26 +1,35 @@
-import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+'use client';
 
-export default function SocialShare() {
+import { FaFacebookF, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+} from 'react-share';
+import envConfig from '../../../../config/envConfig';
+
+export default function SocialShare({ id }: { id: string }) {
+  const url = `${envConfig.client_url_public}/details/${id}`;
+
   return (
     <div className="mt-4 flex gap-3">
-      <a
-        href="#"
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:text-gray-500"
-      >
-        <FaFacebookF />
-      </a>
-      <a
-        href="#"
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:text-gray-500"
-      >
-        <FaTwitter />
-      </a>
-      <a
-        href="#"
-        className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:text-gray-500"
-      >
-        <FaInstagram />
-      </a>
+      <FacebookShareButton url={url}>
+        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:text-gray-500">
+          <FaFacebookF />
+        </span>
+      </FacebookShareButton>
+
+      <TwitterShareButton url={url}>
+        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:text-gray-500">
+          <FaTwitter />
+        </span>
+      </TwitterShareButton>
+
+      <LinkedinShareButton url={url}>
+        <span className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-400 hover:text-gray-500">
+          <FaLinkedin />
+        </span>
+      </LinkedinShareButton>
     </div>
   );
 }

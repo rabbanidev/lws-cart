@@ -9,10 +9,57 @@ import { getProduct } from '../../../../../../services/product.service';
 import { Product as IProduct } from '../../../../../../types/index';
 import { Suspense } from 'react';
 import { ProductTopArrivalSkeleton } from '@/components/skeleton/ProductsSkeleton';
+import { Metadata } from 'next';
+import envConfig from '../../../../../../config/envConfig';
 
 type Props = {
   params: { lang: Locale; id: string };
 };
+
+export async function generateMetadata({
+  params: { id },
+}: Props): Promise<Metadata> {
+  const product = (await getProduct(id)) as IProduct;
+
+  if (!product) {
+    return {
+      title: 'Product not found!',
+    };
+  }
+
+  const images = product.images.map((img) => ({
+    url: img,
+    width: 1200,
+    height: 600,
+    alt: product.name,
+  }));
+
+  return {
+    title: product.name,
+    description: product.description && product.description.slice(0, 100),
+    category: product.categories.map((category) => category.name).join('-'),
+
+    openGraph: {
+      title: product.name,
+      description: product.description && product.description.slice(0, 100),
+      images: [
+        {
+          url: `${envConfig.client_uri}/api/details/${id}`,
+          width: 1200,
+          height: 600,
+          alt: product.name,
+        },
+        ...images,
+        // {
+        //   url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/details/${id}`,
+        // width: 1200,
+        // height: 600,
+        // alt: recipe.name,
+        // },
+      ],
+    },
+  };
+}
 
 export default async function ProductDetails({ params: { lang, id } }: Props) {
   const dict = await getDictionary(lang);

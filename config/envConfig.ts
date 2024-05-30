@@ -3,6 +3,8 @@ const envConfig = {
     process.env.NODE_ENV !== 'production'
       ? process.env.CLIENT_URL_DEV
       : process.env.CLIENT_URL_PRODUCTION,
+
+  client_url_public: process.env.NEXT_PUBLIC_CLIENT_URL,
   mongo_uri: process.env.MONGO_URI,
   salt_rounds: Number(process.env.SALT_ROUNDS),
   auth: {
