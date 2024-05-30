@@ -10,9 +10,10 @@ export async function GET(
   { params: { id } }: { params: { id: string } },
 ) {
   const product = (await getProduct(id)) as Product;
-  const imageUrl = product.images[0];
+  const imageUrl =
+    'https://plus.unsplash.com/premium_photo-1669863280125-7789ef60adc0';
 
-  console.log({ imageUrl });
+  console.log('imageUrl', imageUrl);
 
   return new ImageResponse(<img src={imageUrl} alt={product.name} />, {
     width: 1200,
