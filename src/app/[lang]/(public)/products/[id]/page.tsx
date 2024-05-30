@@ -10,7 +10,7 @@ import { Product as IProduct } from '../../../../../../types/index';
 import { Suspense } from 'react';
 import { ProductTopArrivalSkeleton } from '@/components/skeleton/ProductsSkeleton';
 import { Metadata } from 'next';
-// import envConfig from '../../../../../../config/envConfig';
+import envConfig from '../../../../../../config/envConfig';
 
 type Props = {
   params: { lang: Locale; id: string };
@@ -37,7 +37,7 @@ export async function generateMetadata({
       description: product.description && product.description.slice(0, 100),
       images: [
         {
-          url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/details/${id}`,
+          url: `${envConfig.client_url_public}/api/details/${id}`,
           width: 1200,
           height: 600,
           alt: product.name,

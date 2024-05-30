@@ -6,12 +6,10 @@ import {
   LinkedinShareButton,
   TwitterShareButton,
 } from 'react-share';
-// import envConfig from '../../../../config/envConfig';
+import envConfig from '../../../../config/envConfig';
 
 export default function SocialShare({ id }: { id: string }) {
-  const url = `${process.env.NEXT_PUBLIC_CLIENT_URL}/products/${id}`;
-
-  console.log('url', url);
+  const url = `${envConfig.client_url_public}/products/${id}`;
 
   return (
     <div className="mt-4 flex gap-3">
