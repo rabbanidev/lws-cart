@@ -26,7 +26,7 @@ export function generateMetadata({
     ],
     description:
       'Discover an unparalleled online shopping experience with LWSCart, where we bring you a wide range of high-quality products at unbeatable prices. From the latest in fashion to seasonal essentials, LWSCart is your one-stop-shop for all your needs.',
-    keywords: [],
+    keywords: ['men', 'women', 'kids', 'summer', 'winter'],
     openGraph: {
       title: 'LWSKart | Online shopping platform',
       description:

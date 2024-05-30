@@ -68,7 +68,7 @@ export default async function ProductDetails({ params: { lang, id } }: Props) {
           <ProductTopArrivalSkeleton title={dict.product.relatedProducts} />
         }
       >
-        <RelatedProducts lang={lang} />
+        <RelatedProducts lang={lang} id={id} />
       </Suspense>
     </>
   );

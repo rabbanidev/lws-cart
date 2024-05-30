@@ -172,3 +172,49 @@ export const getProduct = async (id: string) => {
     return error;
   }
 };
+
+export const getRelatedProducts = async (id: string) => {
+  try {
+    await dbConnect();
+
+    // TODO: Below Model call for populate
+    await Color.find({});
+    await Size.find({});
+    await Review.find({});
+    await User.find({});
+    await Category.find({});
+
+    const product = (await Product.findById(id)) as IProduct;
+
+    const products = await Product.find({
+      categories: { $in: product.categories },
+    })
+      .populate({
+        path: 'categories',
+        select: 'name slug',
+      })
+      .populate({
+        path: 'colors',
+        select: 'name',
+      })
+      .populate({
+        path: 'reviews',
+        populate: {
+          path: 'user',
+          select: 'name email image',
+        },
+      })
+      .populate('sizes')
+      .populate('colors')
+      .sort({
+        createdAt: 'desc',
+      })
+      .limit(4)
+      .lean();
+
+    const relatedProducts = replaceMongoIdInArray(products) as IProduct[];
+    return relatedProducts.filter((pd) => pd.id !== id);
+  } catch (error) {
+    return error;
+  }
+};
