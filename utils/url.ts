@@ -17,38 +17,78 @@ export const getLanguageFromURL = (url: string): Locale => {
   }
 };
 
-export const redirectUrl = (
-  prevPath: string,
+export const generateNextUrl = (
+  nextUrl: string,
   searchParams: FormData | any,
   type?: 'page' | 'component',
 ) => {
   if (type === 'page') {
+    if (searchParams.next) {
+      nextUrl += `?next=${removeLanguagePrefix(searchParams.next)}`;
+    }
     if (searchParams.id) {
-      prevPath += `&id=${searchParams.id}`;
+      nextUrl += `&id=${searchParams.id}`;
     }
     if (searchParams.qty) {
-      prevPath += `&qty=${searchParams.qty}`;
+      nextUrl += `&qty=${searchParams.qty}`;
     }
     if (searchParams.size) {
-      prevPath += `&size=${searchParams.size}`;
+      nextUrl += `&size=${searchParams.size}`;
     }
     if (searchParams.color) {
-      prevPath += `&color=${searchParams.color}`;
+      nextUrl += `&color=${searchParams.color}`;
     }
   } else {
+    if (searchParams.get('next')) {
+      nextUrl += `?next=${removeLanguagePrefix(searchParams.get('next') as string)}`;
+    }
     if (searchParams.get('id')) {
-      prevPath += `?id=${searchParams.get('id')}`;
+      nextUrl += `&id=${searchParams.get('id')}`;
     }
     if (searchParams.get('qty')) {
-      prevPath += `&qty=${searchParams.get('qty')}`;
+      nextUrl += `&qty=${searchParams.get('qty')}`;
     }
     if (searchParams.get('size')) {
-      prevPath += `&size=${searchParams.get('size')}`;
+      nextUrl += `&size=${searchParams.get('size')}`;
     }
     if (searchParams.get('color')) {
-      prevPath += `&color=${searchParams.get('color')}`;
+      nextUrl += `&color=${searchParams.get('color')}`;
     }
   }
 
-  return prevPath;
+  return nextUrl;
+};
+
+export const getQueryParams = (url: string): Record<string, string> => {
+  const params: Record<string, string> = {};
+
+  const queryString = url?.split('?')[1];
+  const pairs = queryString?.split('&');
+
+  pairs?.forEach((pair) => {
+    const [key, value] = pair.split('=');
+    params[key] = decodeURIComponent(value);
+  });
+
+  return params;
+};
+
+export const generateRedirectUrlAfterLogin = (paramsUrl: string) => {
+  const { next, id, qty, size, color } = getQueryParams(paramsUrl) || {};
+
+  let url = next;
+  if (id) {
+    url += `?id=${id}`;
+  }
+  if (qty) {
+    url += `&qty=${qty}`;
+  }
+  if (size) {
+    url += `&size=${size}`;
+  }
+  if (color) {
+    url += `&color=${color}`;
+  }
+
+  return url;
 };

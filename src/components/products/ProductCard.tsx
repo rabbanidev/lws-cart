@@ -36,6 +36,7 @@ export default async function ProductCard({ lang, product }: Props) {
     rating,
     colors,
     sizes,
+    stock,
   } = product || {};
 
   return (
@@ -85,13 +86,14 @@ export default async function ProductCard({ lang, product }: Props) {
         </div>
       </div>
       <AddToCartButton
-        text={dict.product.addToCart}
+        text={stock === 0 ? dict.product.stockOut : dict.product.addToCart}
         session={session}
         productId={productId}
         lang={lang}
         quantity={1}
         color={replaceMongoIdInObject(colors[0]) as Color}
         size={replaceMongoIdInObject(sizes[0]) as Size}
+        isDisabled={stock === 0}
       />
     </div>
   );

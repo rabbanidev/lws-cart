@@ -86,6 +86,7 @@
   "product": {
     "breadcrumbTitle": "Product",
     "addToCart": "Add to cart",
+    "stockOut": "Stock Out",
     "addToWishlist": "Add to wishlist",
     "view": "view product",
     "availability": "Availability",

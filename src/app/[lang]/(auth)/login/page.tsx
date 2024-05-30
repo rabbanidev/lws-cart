@@ -3,7 +3,7 @@ import SocialLogin from '@/components/auth/SocialLogin';
 import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../../lib/dictionaries';
-import { redirectUrl, removeLanguagePrefix } from '../../../../../utils/url';
+import { generateNextUrl } from '../../../../../utils/url';
 import { Suspense } from 'react';
 
 type Props = {
@@ -21,21 +21,10 @@ export default async function LoginPage({
 }: Props) {
   const dict = await getDictionary(lang);
 
-  let redirectTo = `/register`;
+  let nextUrl = `/register`;
 
   if (Object.keys(searchParams).length > 0) {
-    if (searchParams.next) {
-      redirectTo += `?next=${removeLanguagePrefix(searchParams.next)}`;
-    }
-
-    redirectTo = redirectUrl(redirectTo, searchParams, 'page');
-
-    // if (searchParams.id) {
-    //   href += `&id=${searchParams.id}`;
-    // }
-    // if (searchParams.qty) {
-    //   href += `&qty=${searchParams.qty}`;
-    // }
+    nextUrl = generateNextUrl(nextUrl, searchParams, 'page');
   }
 
   return (
@@ -55,7 +44,7 @@ export default async function LoginPage({
         </Suspense>
         <p className="mt-4 text-center text-gray-600">
           {dict.auth.login.noAccount}{' '}
-          <LwsLink lang={lang} href={redirectTo} className="text-primary">
+          <LwsLink lang={lang} href={nextUrl} className="text-primary">
             {dict.auth.login.registerNow}
           </LwsLink>
         </p>

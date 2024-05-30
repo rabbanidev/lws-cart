@@ -4,7 +4,6 @@ import envConfig from '../../config/envConfig';
 import { loginSchema, registerSchema } from '../../lib/zod';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
 export const register = async (_prevState: unknown, formData: FormData) => {
@@ -95,12 +94,5 @@ export const login = async (_prevState: unknown, formData: FormData) => {
 };
 
 export const googleSignin = async (_prevState: unknown, formData: FormData) => {
-  console.log("formData.get('redirectTo')", formData.get('redirectTo'));
   await signIn('google', { redirectTo: formData.get('redirectTo') as string });
-};
-
-export const getToken = () => {
-  const cookieStore = cookies();
-  const token = cookieStore.get('authjs.session-token')?.value;
-  return token;
 };

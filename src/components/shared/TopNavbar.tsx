@@ -16,6 +16,7 @@ type Props = {
 export default async function TopNavbar({ lang }: Props) {
   const dict = await getDictionary(lang);
   const wishlist = await getWishlistItemsAction();
+
   const carts = await getFromCartsAction();
 
   const totalQuantity =

@@ -108,7 +108,7 @@ export default async function DetailsContent({ lang, product }: Props) {
       <DetailsAction
         dict={dict}
         lang={lang}
-        product={product}
+        product={JSON.parse(JSON.stringify(product))}
         session={session}
         alreadyAddedInWishlist={Boolean(wishlistItem)}
         cartItem={cartItem}

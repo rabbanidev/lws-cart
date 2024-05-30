@@ -32,8 +32,6 @@ export default function DetailsAction({ dict, product, lang, session }: Props) {
   const [selectedColor, setSelectedColor] = useState<Color>(colors[0]);
   const [selectedSize, setSelectedSize] = useState<Size>(sizes[0]);
 
-  // console.log(cartItem);
-
   return (
     <>
       <div className="mt-4 flex items-center gap-x-5">
@@ -102,17 +100,20 @@ export default function DetailsAction({ dict, product, lang, session }: Props) {
       <div className="mt-6 flex gap-3 border-b border-gray-200 pb-5 pt-5">
         <AddToCartButton
           isDetails
-          text="Add To Cart"
+          text={
+            product.stock === 0 ? dict.product.stockOut : dict.product.addToCart
+          }
           productId={product.id}
           lang={lang}
           session={session}
           quantity={quantity}
           color={selectedColor}
           size={selectedSize}
+          isDisabled={product.stock === 0}
         />
         <WishlistButton
           isDetails
-          text="Wishlist"
+          text={dict.product.addToWishlist}
           productId={product.id}
           lang={lang}
           session={session}

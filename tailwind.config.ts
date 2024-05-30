@@ -24,6 +24,7 @@ const config: Config = {
       },
       colors: {
         primary: '#fd3d57',
+        backdrop: 'rgba(0, 0, 0, 0.4)',
       },
     },
   },

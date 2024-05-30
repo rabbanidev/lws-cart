@@ -7,7 +7,7 @@ import ErrorMessage from '@/components/UI/Error';
 import SubmitButton from '@/components/UI/SubmitButton';
 import { Locale } from '@/i18n.config';
 import { useSearchParams } from 'next/navigation';
-import { redirectUrl, removeLanguagePrefix } from '../../../utils/url';
+import { generateNextUrl } from '../../../utils/url';
 
 type Props = {
   lang: Locale;
@@ -25,23 +25,11 @@ export default function RegisterForm({ lang, dict }: Props) {
     confirmPassword = [],
   } = state?.errors || {};
 
-  let redirectTo = `/${lang}/login`;
-
-  if (searchParams.get('next')) {
-    redirectTo += `?next=${removeLanguagePrefix(searchParams.get('next') as string)}`;
-  }
-
-  redirectTo = redirectUrl(redirectTo, searchParams);
-
-  // if (searchParams.get('id')) {
-  //   href += `?id=${searchParams.get('id')}`;
-  // }
-  // if (searchParams.get('qty')) {
-  //   href += `&qty=${searchParams.get('qty')}`;
-  // }
+  let nextUrl = `/${lang}/login`;
+  nextUrl = generateNextUrl(nextUrl, searchParams);
 
   const handleAction = (formData: FormData) => {
-    formData.append('redirectTo', redirectTo);
+    formData.append('redirectTo', nextUrl);
     formAction(formData);
   };
 

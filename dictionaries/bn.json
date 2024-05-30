@@ -86,6 +86,7 @@
   "product": {
     "breadcrumbTitle": "প্রোডাক্টস",
     "addToCart": "কার্টে যোগ করুন",
+    "stockOut": "স্টক নেই",
     "addToWishlist": "ফেভারিটে যোগ করুন",
     "view": "প্রোডাক্টস দেখুন",
     "availability": "এভেইল্যাবল",

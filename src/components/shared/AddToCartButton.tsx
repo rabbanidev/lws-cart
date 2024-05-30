@@ -16,6 +16,7 @@ type Props = {
   quantity: number;
   color: Color;
   size: Size;
+  isDisabled?: boolean;
 };
 
 export default function AddToCartButton({
@@ -27,6 +28,7 @@ export default function AddToCartButton({
   quantity,
   color,
   size,
+  isDisabled,
 }: Props) {
   const router = useRouter();
 
@@ -50,6 +52,7 @@ export default function AddToCartButton({
       type="button"
       className="flex items-center gap-2 rounded border border-primary bg-primary px-8 py-2 font-medium uppercase text-white transition hover:bg-transparent hover:text-primary"
       onClick={handleAddtoCart}
+      disabled={isDisabled}
     >
       <FaShoppingBag />
       {text}
@@ -59,6 +62,7 @@ export default function AddToCartButton({
       type="button"
       className="block w-full rounded-b border border-primary bg-primary py-1 text-center text-white transition hover:bg-transparent hover:text-primary"
       onClick={handleAddtoCart}
+      disabled={isDisabled}
     >
       {text}
     </button>
