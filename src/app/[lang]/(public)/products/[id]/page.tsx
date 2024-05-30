@@ -10,7 +10,7 @@ import { Product as IProduct } from '../../../../../../types/index';
 import { Suspense } from 'react';
 import { ProductTopArrivalSkeleton } from '@/components/skeleton/ProductsSkeleton';
 import { Metadata } from 'next';
-import envConfig from '../../../../../../config/envConfig';
+// import envConfig from '../../../../../../config/envConfig';
 
 type Props = {
   params: { lang: Locale; id: string };
@@ -27,13 +27,6 @@ export async function generateMetadata({
     };
   }
 
-  const images = product.images.map((img) => ({
-    url: img,
-    width: 1200,
-    height: 600,
-    alt: product.name,
-  }));
-
   return {
     title: product.name,
     description: product.description && product.description.slice(0, 100),
@@ -44,18 +37,11 @@ export async function generateMetadata({
       description: product.description && product.description.slice(0, 100),
       images: [
         {
-          url: `${envConfig.client_uri}/api/details/${id}`,
+          url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/details/${id}`,
           width: 1200,
           height: 600,
           alt: product.name,
         },
-        ...images,
-        // {
-        //   url: `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/details/${id}`,
-        // width: 1200,
-        // height: 600,
-        // alt: recipe.name,
-        // },
       ],
     },
   };
