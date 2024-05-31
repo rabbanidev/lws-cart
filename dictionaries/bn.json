@@ -100,5 +100,16 @@
     "noReview": "কোনো রিভিউ নেই",
     "description": "প্রোডাক্টস এর বিবরণ",
     "relatedProducts": "সম্পর্কিত প্রোডাক্টস"
+  },
+
+  "shop": {
+    "title": "শপ্‌"
+  },
+
+  "filters": {
+    "categories": "ক্যাটেগরিজ",
+    "price": "প্রাইস",
+    "size": "সাইজ",
+    "color": "কালার"
   }
 }

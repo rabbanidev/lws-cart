@@ -44,7 +44,7 @@ export default async function Navbar({ lang }: Props) {
               <LwsLink
                 key={category.id}
                 lang={lang}
-                href={`/categories/${category.slug}`}
+                href={`/shop?categories=${category.id}`}
                 className="flex items-center px-6 py-3 transition hover:bg-gray-100"
               >
                 {category.icon && (

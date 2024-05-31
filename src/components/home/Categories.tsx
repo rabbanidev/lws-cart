@@ -40,7 +40,7 @@ export default async function Categories({ dict, lang }: Props) {
             )}
             <LwsLink
               lang={lang}
-              href={`/categories/${category.slug}`}
+              href={`/shop?categories=${category.id}`}
               className="absolute bottom-4 flex items-center justify-center bg-black bg-opacity-40 font-roboto text-xl font-medium text-white transition group-hover:bg-opacity-60 md:text-3xl md:font-semibold"
             >
               {category.name} {dict.collection}

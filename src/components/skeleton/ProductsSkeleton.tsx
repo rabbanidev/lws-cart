@@ -102,3 +102,13 @@ export function ProductDetailsSkeleton() {
     </div>
   );
 }
+
+export const ShopProductLoading = () => {
+  return (
+    <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
+      {[1, 2, 3, 4, 5, 6].map((item) => (
+        <ProductCardSkeleton key={item} />
+      ))}
+    </div>
+  );
+};

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { IoSearch } from 'react-icons/io5';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaShoppingBag } from 'react-icons/fa';
 import { FaRegUser } from 'react-icons/fa';
@@ -8,6 +7,8 @@ import LwsLink from './LwsLink';
 import { getDictionary } from '../../../lib/dictionaries';
 import { getWishlistItemsAction } from '@/actions/wishlist';
 import { getFromCartsAction } from '@/actions/cart';
+import SearchBar from './SearchBar';
+import { Suspense } from 'react';
 
 type Props = {
   lang: Locale;
@@ -39,21 +40,9 @@ export default async function TopNavbar({ lang }: Props) {
           />
         </LwsLink>
 
-        <div className="relative flex w-full max-w-xl md:mx-5 lg:mx-0">
-          <span className="absolute left-4 top-3.5 hidden text-lg text-gray-400 md:block">
-            <IoSearch size={20} />
-          </span>
-          <input
-            type="text"
-            name="search"
-            id="search"
-            className="hidden w-full rounded-l-md border border-r-0 border-primary py-3 pl-12 pr-3 focus:outline-none md:flex"
-            placeholder={dict.topNavbar.search}
-          />
-          <button className="hidden rounded-r-md border  border-primary bg-primary px-8 text-white transition hover:bg-transparent hover:text-primary md:block">
-            {dict.topNavbar.search}
-          </button>
-        </div>
+        <Suspense>
+          <SearchBar lang={lang} title={dict.topNavbar.search} />
+        </Suspense>
 
         <div className="flex items-center space-x-4">
           <LwsLink

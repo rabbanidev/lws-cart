@@ -22,3 +22,12 @@ export type Product = {
   rating: number;
   reviews?: Review[];
 };
+
+export type ProductFilters = {
+  searchTerm?: string;
+  categories?: string[];
+  colors?: string[];
+  sizes?: string[];
+  minPrice?: number | undefined;
+  maxPrice?: number | undefined;
+};

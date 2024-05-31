@@ -1,7 +1,7 @@
 import { Cart } from './cart';
 import { AuthSession } from './auth';
 import { WishlistItem } from './wishlist';
-import { Product } from './product';
+import { Product, ProductFilters } from './product';
 import { Review } from './review';
 import { Color } from './color';
 import { Size } from './size';
@@ -22,4 +22,5 @@ export type {
   WishlistItem,
   AuthSession,
   Cart,
+  ProductFilters,
 };

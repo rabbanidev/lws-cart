@@ -100,5 +100,16 @@
     "noReview": "There is no reviews",
     "description": "Product details",
     "relatedProducts": "Related products"
+  },
+
+  "shop": {
+    "title": "Shop"
+  },
+
+  "filters": {
+    "categories": "Categories",
+    "price": "Price",
+    "size": "Size",
+    "color": "Color"
   }
 }
