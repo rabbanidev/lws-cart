@@ -3,7 +3,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import envConfig from '../../../../config/envConfig';
 import { verifyToken } from '../../../../lib/jwt';
 import { Secret } from 'jsonwebtoken';
-import { addToCart, getFromCarts } from '../../../../services/cart.service';
+import {
+  addToCart,
+  getFromCarts,
+  removeCartItem,
+} from '../../../../services/cart.service';
 import { getProduct } from '../../../../services/product.service';
 import { Product as IProduct } from '../../../../types/index';
 
@@ -85,6 +89,47 @@ export async function GET() {
         status: 200,
       },
     );
+  } catch (error) {
+    return NextResponse.json(error, {
+      status: 500,
+    });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const accessToken = headers().get('authorization')
+      ? headers().get('authorization')?.split(' ')[1]
+      : null;
+
+    if (!accessToken) {
+      return NextResponse.json(
+        { message: 'User is not authenticated' },
+        {
+          status: 401,
+        },
+      );
+    }
+
+    const { cartItemId } = await req.json();
+
+    const res = await removeCartItem(cartItemId);
+
+    if (res) {
+      return NextResponse.json(
+        { message: 'Cart item removed!' },
+        {
+          status: 200,
+        },
+      );
+    } else {
+      return NextResponse.json(
+        { message: 'Something went wrong' },
+        {
+          status: 500,
+        },
+      );
+    }
   } catch (error) {
     return NextResponse.json(error, {
       status: 500,

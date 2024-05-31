@@ -59,3 +59,65 @@ export const getFromCarts = async (userId: string): Promise<ICart[] | []> => {
 
   return replaceMongoIdInArray(carts);
 };
+
+export const updateQuantity = async (payload: {
+  cartItemId: string;
+  productId: string;
+  quantity: number;
+  type: 'increase' | 'decrease';
+}) => {
+  await dbConnect();
+
+  const { cartItemId, productId, quantity, type } = payload;
+
+  const product = await Product.findById(productId);
+
+  const exitCart = await Cart.findById(cartItemId);
+
+  if (exitCart) {
+    if (type === 'increase') {
+      exitCart.quantity += quantity;
+    } else {
+      exitCart.quantity -= quantity;
+    }
+
+    exitCart.save();
+  }
+
+  //TODO: Stock management for product
+  if (type === 'increase') {
+    product.stock = product.stock - quantity;
+  } else {
+    product.stock = product.stock + quantity;
+  }
+
+  if (product.stock === 0) {
+    product.availability = 'Out Stock';
+  } else {
+    product.availability = 'In Stock';
+  }
+
+  await product.save();
+};
+
+export const removeCartItem = async (cartItemId: string) => {
+  await dbConnect();
+
+  const exitCart = (await Cart.findById(cartItemId)) as ICart;
+
+  const product = await Product.findById(exitCart.product);
+
+  //TODO: Stock management for product
+  product.stock = product.stock + exitCart.quantity;
+
+  if (product.stock === 0) {
+    product.availability = 'Out Stock';
+  } else {
+    product.availability = 'In Stock';
+  }
+  await product.save();
+
+  // TODO: remove from cart
+  const result = await Cart.findByIdAndDelete(cartItemId);
+  return result;
+};

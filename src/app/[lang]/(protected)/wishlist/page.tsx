@@ -6,6 +6,7 @@ import { Dictionary } from '../../../../../types/index';
 import { getDictionary } from '../../../../../lib/dictionaries';
 import WishlistItem from '@/components/wishlist/WishlistItem';
 import { getWishlistItemsAction } from '@/actions/wishlist';
+import Empty from '@/components/shared/Empty';
 
 type Props = {
   params: {
@@ -35,15 +36,22 @@ export default async function WishlistPage({
       <BreadCrumb lang={lang} title={dict.wishlist.title} />
       <div className="container gap-6 pb-16 pt-4">
         <div className="mx-auto max-w-6xl space-y-4">
-          {wishlistItems.length > 0
-            ? wishlist?.items?.map((wishlistItem) => (
-                <WishlistItem
-                  key={wishlistItem.id}
-                  lang={lang}
-                  wishlistItem={wishlistItem}
-                />
-              ))
-            : ''}
+          {wishlistItems.length > 0 ? (
+            wishlistItems.map((wishlistItem) => (
+              <WishlistItem
+                key={wishlistItem.id}
+                lang={lang}
+                wishlistItem={wishlistItem}
+              />
+            ))
+          ) : (
+            <Empty
+              lang={lang}
+              title={dict.wishlist.empty}
+              description={dict.wishlist.description}
+              btnText={dict.wishlist.btnText}
+            />
+          )}
         </div>
       </div>
     </>

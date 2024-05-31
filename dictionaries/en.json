@@ -114,10 +114,19 @@
   },
 
   "wishlist": {
-    "title": "Wishlist"
+    "title": "Wishlist",
+    "empty": "Your wishlist is empty!",
+    "description": "It looks like your wishlist is currently empty. Start exploring our top products to add some items!",
+    "btnText": "Continue Shopping"
   },
 
   "cart": {
-    "title": "Cart"
+    "title": "Cart",
+    "empty": "Your Cart is empty!",
+    "description": "It looks like your wishlist is currently empty. Start exploring our top products to add some items!",
+    "btnText": "Continue Shopping",
+    "product": "Product",
+    "price": "Price",
+    "subTotal": "SubTotal"
   }
 }

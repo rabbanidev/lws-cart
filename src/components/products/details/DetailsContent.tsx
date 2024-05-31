@@ -65,7 +65,9 @@ export default async function DetailsContent({ lang, product }: Props) {
           <span>{dict.product.availability}: </span>
           <span
             className={
-              availability === 'In Stock' ? 'text-green-600' : 'text-primary'
+              availability === 'In Stock' || stock !== 0
+                ? 'text-green-600'
+                : 'text-primary'
             }
           >
             {availability} ({stock})
