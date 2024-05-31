@@ -39,7 +39,10 @@ export const getWishlistItems = async (
   const wishlistItems: IWishlistItem[] = await Wishlist.find({
     user: userId,
   })
-    .populate('product')
+    .populate({
+      path: 'product',
+      populate: ['colors', 'sizes', 'categories'],
+    })
     .lean();
 
   return replaceMongoIdInArray(wishlistItems);

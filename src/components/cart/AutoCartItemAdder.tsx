@@ -33,7 +33,7 @@ export default function AutoCartItemAdder() {
   }, [color, id, initialized, params, qty, router, size]);
 
   return (
-    <div className="bg-backdrop fixed inset-0 flex min-h-[65vh] w-full items-center justify-center">
+    <div className="fixed inset-0 flex min-h-[65vh] w-full items-center justify-center bg-black/60 backdrop-blur-sm">
       <Loading />
     </div>
   );

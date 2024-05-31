@@ -111,5 +111,13 @@
     "price": "Price",
     "size": "Size",
     "color": "Color"
+  },
+
+  "wishlist": {
+    "title": "Wishlist"
+  },
+
+  "cart": {
+    "title": "Cart"
   }
 }
