@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import { Dictionary } from '../../../types/index';
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '../../../lib/dictionaries';
 
 type IProps = {
-  dict: Dictionary;
+  lang: Locale;
 };
 
-export default function Features({ dict }: IProps) {
+export default async function Features({ lang }: IProps) {
+  const dict: Dictionary = await getDictionary(lang);
+
   return (
     <div className="container py-16">
       <div className="mx-auto grid w-10/12 grid-cols-1 justify-center gap-6 md:grid-cols-3">
@@ -18,8 +22,12 @@ export default function Features({ dict }: IProps) {
             height={48}
           />
           <div>
-            <h4 className="text-lg font-medium capitalize">{dict.shipping}</h4>
-            <p className="text-sm text-gray-500">{dict.orderOver}</p>
+            <h4 className="text-lg font-medium capitalize">
+              {dict.home.features.shipping}
+            </h4>
+            <p className="text-sm text-gray-500">
+              {dict.home.features.orderOver}
+            </p>
           </div>
         </div>
         <div className="flex items-center justify-center gap-5 rounded-sm border border-primary px-3 py-6">
@@ -32,9 +40,11 @@ export default function Features({ dict }: IProps) {
           />
           <div>
             <h4 className="text-lg font-medium capitalize">
-              {dict.moneyReturns}
+              {dict.home.features.moneyReturns}
             </h4>
-            <p className="text-sm text-gray-500">{dict.moneyReturns30Day}</p>
+            <p className="text-sm text-gray-500">
+              {dict.home.features.moneyReturns30Day}
+            </p>
           </div>
         </div>
         <div className="flex items-center justify-center gap-5 rounded-sm border border-primary px-3 py-6">
@@ -46,8 +56,12 @@ export default function Features({ dict }: IProps) {
             height={48}
           />
           <div>
-            <h4 className="text-lg font-medium capitalize">{dict.support}</h4>
-            <p className="text-sm text-gray-500">{dict.customerSupport}</p>
+            <h4 className="text-lg font-medium capitalize">
+              {dict.home.features.support}
+            </h4>
+            <p className="text-sm text-gray-500">
+              {dict.home.features.customerSupport}
+            </p>
           </div>
         </div>
       </div>

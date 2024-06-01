@@ -1,2 +1,2 @@
-export const loggedInRoutes = ['/wishlist', '/cart', '/account'];
+export const loggedInRoutes = ['/wishlist', '/cart', '/checkout', '/account'];
 export const loggedOutRoutes = ['/login', '/register'];

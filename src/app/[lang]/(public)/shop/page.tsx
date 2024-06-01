@@ -61,7 +61,7 @@ export default async function ShopPage({
         <Drawer>
           <Filter lang={lang} />
         </Drawer>
-        <div className="overflow-hiddenb col-span-1 hidden rounded bg-white px-4 pb-6 shadow md:block">
+        <div className="col-span-1 hidden overflow-hidden rounded bg-white px-4 pb-6 shadow md:block">
           <Filter lang={lang} />
         </div>
         <div className="col-span-3">

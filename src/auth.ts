@@ -3,6 +3,7 @@
 
 import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import FacebookProvider from 'next-auth/providers/facebook';
 import GoogleProvider from 'next-auth/providers/google';
 import envConfig from '../config/envConfig';
 
@@ -71,11 +72,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       clientId: envConfig.auth.google_client_id,
       clientSecret: envConfig.auth.google_client_secret,
     }),
+    FacebookProvider({
+      clientId: envConfig.auth.facebook_client_id,
+      clientSecret: envConfig.auth.facebook_client_secret,
+    }),
   ],
 
   callbacks: {
     async signIn({ account, user }) {
-      if (account && account.provider === 'google' && user.email) {
+      if (
+        account &&
+        (account.provider === 'google' || account.provider === 'facebook') &&
+        user.email
+      ) {
         const response = await socialSignin(account, user);
         const result = await response.json();
 

@@ -26,11 +26,17 @@ export const addToCart = async (payload: {
 
   if (exitCart) {
     exitCart.quantity = exitCart.quantity + quantity;
+    exitCart.subTotal = product.price * exitCart.quantity;
     exitCart.selectedColor = selectedColor;
     exitCart.selectedSize = selectedSize;
     exitCart.save();
   } else {
-    await Cart.create({ ...payload, user: userId, product: productId });
+    await Cart.create({
+      ...payload,
+      subTotal: product.price * quantity,
+      user: userId,
+      product: productId,
+    });
   }
 
   //TODO: Stock management for product
@@ -80,6 +86,7 @@ export const updateQuantity = async (payload: {
     } else {
       exitCart.quantity -= quantity;
     }
+    exitCart.subTotal = product.price * exitCart.quantity;
 
     exitCart.save();
   }

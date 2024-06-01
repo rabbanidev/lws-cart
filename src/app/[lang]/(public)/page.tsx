@@ -9,32 +9,22 @@ import Advertise from '@/components/home/Advertise';
 import { Suspense } from 'react';
 import { ProductTopArrivalSkeleton } from '@/components/skeleton/ProductsSkeleton';
 import { BannerCategoriesSkeleton } from '@/components/skeleton/CategoriesSkeleton';
+import { Dictionary } from '../../../../types/index';
 
 type Props = {
   params: { lang: Locale };
 };
 
 export default async function HomePage({ params: { lang } }: Props) {
-  const dict = await getDictionary(lang);
+  const dict: Dictionary = await getDictionary(lang);
 
   return (
     <>
-      <Banner lang={lang} dict={dict.home.banner} />
-      <Features dict={dict.home.features} />
+      <Banner lang={lang} />
+      <Features lang={lang} />
 
-      <Suspense
-        fallback={
-          <BannerCategoriesSkeleton title={dict.home.categories.title} />
-        }
-      >
-        <Categories
-          dict={{
-            title: dict.home.categories.title,
-            collection: dict.home.categories.collection,
-            categoryItems: dict.category.categoryItems,
-          }}
-          lang={lang}
-        />
+      <Suspense fallback={<BannerCategoriesSkeleton lang={lang} />}>
+        <Categories lang={lang} />
       </Suspense>
 
       <Suspense

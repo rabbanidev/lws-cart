@@ -54,7 +54,6 @@ export default function Drawer({ children }: { children: ReactNode }) {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              Info
             </h5>
             <button
               type="button"

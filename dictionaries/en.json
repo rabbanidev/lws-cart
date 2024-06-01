@@ -128,5 +128,21 @@
     "product": "Product",
     "price": "Price",
     "subTotal": "SubTotal"
+  },
+
+  "orders": {
+    "summary": {
+      "title": "order summary",
+      "subTotal": "Sub Total",
+      "shipping": "Shipping",
+      "total": "Total",
+      "free": "Free",
+      "proceedToCheckout": "Proceed to checkout"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "placeOrder": "Place order",
+    "termsCondition": "I agree to the <a href='#' style='color:#fd3d57'> terms & conditions </a>"
   }
 }

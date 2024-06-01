@@ -1,13 +1,14 @@
 import { Locale } from '@/i18n.config';
 import LwsLink from '../shared/LwsLink';
 import { getDictionary } from '../../../lib/dictionaries';
+import { Dictionary } from '../../../types/index';
 
 type Props = {
   lang: Locale;
 };
 
 export default async function Advertise({ lang }: Props) {
-  const dict = await getDictionary(lang);
+  const dict: Dictionary = await getDictionary(lang);
 
   return (
     <div className="container pb-16">

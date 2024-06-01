@@ -1,6 +1,6 @@
 'use client';
 
-import { googleSignin } from '@/actions/auth';
+import { facebookSignin, googleSignin } from '@/actions/auth';
 import { Dictionary } from '../../../types/index';
 import { useFormState } from 'react-dom';
 import { Locale } from '@/i18n.config';
@@ -18,6 +18,7 @@ type Props = {
 export default function SocialLogin({ lang, dict }: Props) {
   const searchParams = useSearchParams();
   const [, googleFormAction] = useFormState(googleSignin, null);
+  const [, facebookFormAction] = useFormState(facebookSignin, null);
 
   let nextUrl = `/${lang}`;
   nextUrl = generateNextUrl(nextUrl, searchParams);
@@ -32,6 +33,14 @@ export default function SocialLogin({ lang, dict }: Props) {
     googleFormAction(formData);
   };
 
+  const handleFacebookSignin = (formData: FormData) => {
+    formData.append(
+      'redirectTo',
+      redirectTo ? `/${lang}${redirectTo}` : `/${lang}`,
+    );
+    facebookFormAction(formData);
+  };
+
   return (
     <>
       <div className="relative mt-6 flex justify-center">
@@ -41,12 +50,15 @@ export default function SocialLogin({ lang, dict }: Props) {
         <div className="absolute left-0 top-3 w-full border-b-2 border-gray-200"></div>
       </div>
       <div className="mt-4 flex gap-4">
-        <a
-          href="#"
-          className="w-1/2 rounded bg-blue-800 py-2 text-center font-roboto text-sm font-medium uppercase text-white hover:bg-blue-700"
-        >
-          {dict.auth.social.fb}
-        </a>
+        <form action={handleFacebookSignin} className="w-1/2 ">
+          <button
+            type="submit"
+            className="w-full rounded bg-blue-800 py-2 text-center font-roboto text-sm font-medium uppercase text-white hover:bg-blue-700"
+          >
+            {dict.auth.social.fb}
+          </button>
+        </form>
+
         <form action={handleGoogleSignin} className="w-1/2 ">
           <button
             type="submit"

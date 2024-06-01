@@ -10,7 +10,6 @@ import { Product as IProduct } from '../../../../../../types/index';
 import { Suspense } from 'react';
 import { ProductTopArrivalSkeleton } from '@/components/skeleton/ProductsSkeleton';
 import { Metadata } from 'next';
-// import envConfig from '../../../../../../config/envConfig';
 
 type Props = {
   params: { lang: Locale; id: string };

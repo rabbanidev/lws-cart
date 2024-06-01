@@ -127,6 +127,22 @@
     "btnText": "শপিং চালিয়ে যান",
     "product": "প্রোডাক্টস",
     "price": "মূল্য",
-    "subTotal": "মোট মূল্য"
+    "subTotal": "সাবটোটাল"
+  },
+
+  "orders": {
+    "summary": {
+      "title": "অর্ডার সারসংক্ষেপ",
+      "subTotal": "সাবটোটাল ",
+      "shipping": "শিপিং ফি",
+      "total": "মোট",
+      "free": "বিনামূল্যে",
+      "proceedToCheckout": "চেকআউট করতে এগিয়ে যান"
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "placeOrder": "অর্ডার করুন",
+    "termsCondition": "আমি <a href='#' style='color:#fd3d57'> শর্তাবলীতে </a> সম্মত"
   }
 }

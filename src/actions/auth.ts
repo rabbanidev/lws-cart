@@ -96,3 +96,12 @@ export const login = async (_prevState: unknown, formData: FormData) => {
 export const googleSignin = async (_prevState: unknown, formData: FormData) => {
   await signIn('google', { redirectTo: formData.get('redirectTo') as string });
 };
+
+export const facebookSignin = async (
+  _prevState: unknown,
+  formData: FormData,
+) => {
+  await signIn('facebook', {
+    redirectTo: formData.get('redirectTo') as string,
+  });
+};

@@ -48,7 +48,7 @@ export default function FilterBySizes({ title, sizes }: Props) {
           <div key={size.id} className="size-selector">
             <button
               type="button"
-              className={`flex h-6 w-6 cursor-pointer items-center justify-center rounded-sm border text-xs  uppercase  shadow-sm ${queries.includes(size.id) ? 'border-primary text-primary' : 'border-gray-200 text-gray-600'}`}
+              className={`flex h-6 cursor-pointer items-center justify-center rounded-sm border px-2 text-xs  uppercase  shadow-sm ${queries.includes(size.id) ? 'border-primary text-primary' : 'border-gray-200 text-gray-600'}`}
               onClick={() => handleSize(size.id)}
             >
               {size.title}

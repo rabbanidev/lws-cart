@@ -48,7 +48,7 @@ export function ProductCardSkeleton() {
 
 export function ProductDetailsSkeleton() {
   return (
-    <div className=" container grid animate-pulse grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="container mt-10 grid animate-pulse grid-cols-1 gap-6 md:grid-cols-2">
       <div>
         <div className="h-64 w-full rounded bg-gray-300"></div>
         <div className="mt-4 grid grid-cols-5 gap-4">

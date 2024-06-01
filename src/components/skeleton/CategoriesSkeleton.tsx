@@ -1,9 +1,15 @@
-export function BannerCategoriesSkeleton({ title }: { title: string }) {
+import { Locale } from '@/i18n.config';
+import { getDictionary } from '../../../lib/dictionaries';
+import { Dictionary } from '../../../types/index';
+
+export async function BannerCategoriesSkeleton({ lang }: { lang: Locale }) {
+  const dict: Dictionary = await getDictionary(lang);
+
   const items = Array.from({ length: 5 }).fill(null);
   return (
     <div className="container py-16">
       <h2 className="mb-6 text-2xl font-medium uppercase text-gray-800">
-        {title}
+        {dict.home.categories.title}
       </h2>
       <div className="grid grid-cols-6 gap-3">
         {items.map((_item, index) => (

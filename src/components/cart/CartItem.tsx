@@ -20,8 +20,6 @@ export default async function CartItem({ lang, cartItem }: Props) {
 
   const { id: productId, name, images, availability, price, stock } = product;
 
-  const subTotal = cartItem.quantity * price;
-
   return (
     <div className="grid grid-cols-12 gap-4 rounded border border-gray-200 p-4">
       <div className="col-span-6 flex items-center gap-x-4">
@@ -75,7 +73,7 @@ export default async function CartItem({ lang, cartItem }: Props) {
       <div className="col-span-4 mt-10 text-lg font-semibold text-primary">
         <div className="flex items-center justify-end gap-x-4">
           <p className="text-base font-medium text-primary">
-            ${numberFixed(subTotal)}
+            ${numberFixed(cartItem.subTotal)}
           </p>
           <CartRemoveButton cartItemId={cartItem.id} />
         </div>

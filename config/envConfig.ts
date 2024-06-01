@@ -11,6 +11,8 @@ const envConfig = {
     secret: process.env.AUTH_SECRET,
     google_client_id: process.env.GOOGLE_CLIENT_ID,
     google_client_secret: process.env.GOOGLE_CLIENT_SECRET,
+    facebook_client_id: process.env.FACEBOOK_CLIENT_ID,
+    facebook_client_secret: process.env.FACEBOOK_CLIENT_SECRET,
   },
   jwt: {
     secret: process.env.JWT_SECRET,

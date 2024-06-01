@@ -10,4 +10,5 @@ export type Cart = {
   quantity: number;
   selectedColor: Color;
   selectedSize: Size;
+  subTotal: number;
 };

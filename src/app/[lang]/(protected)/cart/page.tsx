@@ -7,6 +7,8 @@ import Empty from '@/components/shared/Empty';
 import { Dictionary } from '../../../../../types/index';
 import CartItem from '@/components/cart/CartItem';
 import { Locale } from '@/i18n.config';
+import OrderSummary from '@/components/order/OrderSummary';
+import LwsLink from '@/components/shared/LwsLink';
 
 type Props = {
   params: {
@@ -61,6 +63,17 @@ export default async function CartPage({
               {cartItems.map((cartItem) => (
                 <CartItem key={cartItem.id} lang={lang} cartItem={cartItem} />
               ))}
+            </div>
+            <div className="col-span-4 rounded border border-gray-200 p-4">
+              <OrderSummary lang={lang} isCheckout={false}>
+                <LwsLink
+                  lang={lang}
+                  href="/checkout"
+                  className="block w-full rounded-md border border-primary bg-primary px-4 py-3 text-center font-medium text-white transition hover:bg-transparent hover:text-primary"
+                >
+                  {dict.orders.summary.proceedToCheckout}
+                </LwsLink>
+              </OrderSummary>
             </div>
           </div>
         ) : (

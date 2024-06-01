@@ -28,6 +28,10 @@ const cartSchema = new Schema<ICart>(
       ref: 'Size',
       required: true,
     },
+    subTotal: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
