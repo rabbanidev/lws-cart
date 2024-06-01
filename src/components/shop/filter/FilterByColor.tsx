@@ -35,6 +35,7 @@ export default function FilterByColors({ title, colors }: Props) {
     }
 
     router.replace(`${pathname}?${params.toString()}`);
+    router.refresh();
   };
 
   return (
@@ -47,7 +48,7 @@ export default function FilterByColors({ title, colors }: Props) {
           <div key={color.id} className="size-selector">
             <button
               type="button"
-              className={`flex h-6 cursor-pointer items-center justify-center rounded-sm border px-1  text-xs  shadow-sm ${queries.includes(color.id) ? 'border-primary text-primary' : 'border-gray-200 text-gray-600'}`}
+              className={`flex h-6 cursor-pointer items-center justify-center rounded-sm border px-1 text-xs  uppercase  shadow-sm ${queries.includes(color.id) ? 'border-primary text-primary' : 'border-gray-200 text-gray-600'}`}
               onClick={() => handleColor(color.id)}
             >
               {color.title}

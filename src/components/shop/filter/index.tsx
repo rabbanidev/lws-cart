@@ -31,7 +31,7 @@ export default async function Filter({ lang }: Props) {
       </Suspense>
 
       <Suspense>
-        <FilterByPrice title={dict.filters.color} />
+        <FilterByPrice title={dict.filters.price} />
       </Suspense>
 
       <Suspense>

@@ -41,6 +41,8 @@ export default function SearchBar({ title, lang }: Props) {
     } else {
       router.replace(`${pathname}?${params.toString()}`);
     }
+
+    router.refresh();
   }, 500);
 
   return (

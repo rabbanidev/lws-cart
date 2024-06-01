@@ -11,7 +11,9 @@ export default function usePortal(): HTMLDivElement | null {
 
     // Cleanup function
     return () => {
-      parent.removeChild(div);
+      if (parent.contains(div)) {
+        parent.removeChild(div);
+      }
     };
   }, []);
 

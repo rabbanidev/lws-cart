@@ -34,6 +34,7 @@ export default function FilterByPrice({ title }: Props) {
     }
 
     router.replace(`${pathname}?${params.toString()}`);
+    router.refresh();
   };
 
   return (
