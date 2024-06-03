@@ -7,3 +7,16 @@ export const getUserByEmail = async (email: string): Promise<IUser | null> => {
 
   return await User.findOne({ email }).lean();
 };
+
+export const getUserById = async (id: string): Promise<IUser | null> => {
+  await dbConnect();
+  return await User.findById(id).lean();
+};
+
+export const updateUser = async (id: string, payload: Partial<IUser>) => {
+  await dbConnect();
+
+  const user = await User.findByIdAndUpdate(id, { ...payload }, { new: true });
+
+  return user;
+};

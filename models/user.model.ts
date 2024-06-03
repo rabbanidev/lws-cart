@@ -19,6 +19,10 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: false,
     },
+    contactNumber: {
+      type: String,
+      required: false,
+    },
     provider: {
       type: String,
       enum: ['google', 'facebook'],

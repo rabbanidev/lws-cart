@@ -53,8 +53,6 @@ export const getWishlistItemsAction = async (): Promise<{
     });
     const result = await response.json();
 
-    // console.log('result', result.items[0].product);
-
     return {
       status: response.status,
       items: result.items,

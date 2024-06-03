@@ -34,12 +34,6 @@ export const register = async (_prevState: unknown, formData: FormData) => {
 
     if (res.status === 201) {
       isRedirect = true;
-      // const formData = new FormData();
-      // formData.append('email', `${user.email}`);
-      // formData.append('password', `${user.password}`);
-      // formData.append('register', 'yes');
-      // const loginRes = await login(null, formData);
-      // return { message: loginRes?.message };
     } else {
       isRedirect = false;
       return {

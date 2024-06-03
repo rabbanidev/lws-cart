@@ -101,7 +101,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true;
     },
 
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account, trigger, session }) {
       if (account) {
         // TODO: Save the access token and refresh token in the JWT on the initial login
         return {
@@ -110,6 +110,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       }
 
+      // TODO: Update session
+      if (trigger === 'update') {
+        token.user = session?.user || token.user;
+        token.backendTokens = session?.backendTokens || token.backendTokens;
+      }
       return token;
     },
 

@@ -144,5 +144,19 @@
     "title": "Checkout",
     "placeOrder": "Place order",
     "termsCondition": "I agree to the <a href='#' style='color:#fd3d57'> terms & conditions </a>"
+  },
+
+  "account": {
+    "title": "Profile",
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "contactNumber": "Contact number",
+      "image": "Image URL",
+      "submitBtnText": "Update Profile"
+    }
+  },
+  "address": {
+    "title": "Address"
   }
 }

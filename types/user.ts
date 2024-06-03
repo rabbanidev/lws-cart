@@ -4,5 +4,6 @@ export type User = {
   email: string;
   password: string;
   image?: string;
+  contactNumber?: string;
   provider?: 'google' | 'facebook';
 };

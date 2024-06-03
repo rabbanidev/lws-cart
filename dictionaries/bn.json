@@ -140,9 +140,24 @@
       "proceedToCheckout": "চেকআউট করতে এগিয়ে যান"
     }
   },
+
   "checkout": {
     "title": "Checkout",
     "placeOrder": "অর্ডার করুন",
     "termsCondition": "আমি <a href='#' style='color:#fd3d57'> শর্তাবলীতে </a> সম্মত"
+  },
+
+  "account": {
+    "title": "প্রোফাইল",
+    "form": {
+      "name": "পূর্ণ নাম",
+      "email": "ইমেইল এড্রেস",
+      "contactNumber": "মোবাইল নাম্বার",
+      "image": "ইমেজ URL",
+      "submitBtnText": "তথ্য জমা দিন"
+    }
+  },
+  "address": {
+    "title": "ঠিকানা"
   }
 }
