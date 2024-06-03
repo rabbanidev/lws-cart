@@ -19,7 +19,7 @@ export default async function UserDashboardLayout({
         <Suspense>
           <DashboardSidebar lang={params.lang} dict={dict} />
         </Suspense>
-        <div className="col-span-1 mt-8 border-l border-gray-200 lg:col-span-10 lg:mt-0 lg:px-5">
+        <div className="col-span-1 mt-8 border-t border-gray-200 pt-12 lg:col-span-10 lg:mt-0 lg:border-l lg:border-t-0 lg:px-5 lg:pt-0">
           {children}
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function DashboardError({
       role="alert"
     >
       <p className="mb-4 w-1/2 rounded-lg bg-red-50 p-4 text-base text-primary">
-        {error.message}
+        {error.message || 'Something went wrong!'}
       </p>
     </div>
   );

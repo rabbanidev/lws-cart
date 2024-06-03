@@ -1,3 +1,4 @@
+import { Address, CommonAddress } from './address';
 import { Cart } from './cart';
 import { AuthSession } from './auth';
 import { WishlistItem } from './wishlist';
@@ -23,4 +24,6 @@ export type {
   AuthSession,
   Cart,
   ProductFilters,
+  Address,
+  CommonAddress,
 };

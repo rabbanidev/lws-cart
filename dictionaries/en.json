@@ -156,7 +156,23 @@
       "submitBtnText": "Update Profile"
     }
   },
+
   "address": {
-    "title": "Address"
+    "title": "Address",
+    "shipping": {
+      "title": "Shipping adress"
+    },
+    "delivery": {
+      "title": "Delivery adress"
+    },
+    "form": {
+      "name": "Full name",
+      "email": "Email address",
+      "contactNumber": "Contact number",
+      "streetAddress": "Street address",
+      "city": "City",
+      "country": "Country",
+      "submitBtnText": "Update Address"
+    }
   }
 }

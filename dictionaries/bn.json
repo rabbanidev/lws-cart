@@ -158,6 +158,21 @@
     }
   },
   "address": {
-    "title": "ঠিকানা"
+    "title": "ঠিকানা",
+    "shipping": {
+      "title": "প্রেরণের ঠিকানা"
+    },
+    "delivery": {
+      "title": "সরবরাহের ঠিকানা"
+    },
+    "form": {
+      "name": "পূর্ণ নাম",
+      "email": "ইমেইল এড্রেস",
+      "contactNumber": "মোবাইল নাম্বার",
+      "streetAddress": "বাড়ির ঠিকানা",
+      "city": "শহর",
+      "country": "দেশ",
+      "submitBtnText": "তথ্য জমা দিন"
+    }
   }
 }
