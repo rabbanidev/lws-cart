@@ -7,7 +7,6 @@ import { updateUserAccount } from '@/actions/user';
 import ErrorMessage from '../UI/Error';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 type Props = {
   lang: Locale;
@@ -19,7 +18,6 @@ export default function AccountForm({ lang, dict, user }: Props) {
   const session = useSession();
   const [errorMessage, setErrorMessage] = useState('');
   const [pending, setPending] = useState(false);
-  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,9 +35,7 @@ export default function AccountForm({ lang, dict, user }: Props) {
       const res = await updateUserAccount(user as IUser);
       if (res.status === 200) {
         // TODO: Update Session
-        session.update({ user: { ...res.user, s: 'a' } });
-        console.log('updated');
-        router.refresh();
+        session.update({ user: res.user });
       } else {
         setErrorMessage(res.message);
       }

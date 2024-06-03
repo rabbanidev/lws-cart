@@ -1,30 +1,26 @@
 import { Locale } from '@/i18n.config';
 import LwsLink from '@/components/shared/LwsLink';
 import Signout from '@/components/auth/Signout';
-import { getDictionary } from '../../../lib/dictionaries';
-import { auth } from '@/auth';
+import { Dictionary, User } from '../../../types/index';
 
 type Props = {
   lang: Locale;
+  dict: Dictionary;
+  user?: User;
 };
 
-export default async function AuthPannel({ lang }: Props) {
-  const { navbar } = await getDictionary(lang);
-  const session = await auth();
-
-  // console.log('sess', session);
-
+export default async function AuthPannel({ lang, dict, user }: Props) {
   return (
     <>
-      {session?.user ? (
-        <Signout lang={lang} user={session.user} />
+      {user ? (
+        <Signout lang={lang} user={user} />
       ) : (
         <LwsLink
           lang={lang}
           href="/login"
           className="text-gray-200 transition hover:text-white"
         >
-          {navbar.loginRegister}
+          {dict.navbar.loginRegister}
         </LwsLink>
       )}
     </>

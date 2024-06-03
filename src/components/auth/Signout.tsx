@@ -6,7 +6,7 @@ import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { FaRegUser } from 'react-icons/fa';
 import { PiSignOutBold } from 'react-icons/pi';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 type Props = {
   lang: Locale;
@@ -15,10 +15,13 @@ type Props = {
 
 export default function Signout({ lang, user }: Props) {
   const [showManu, setShowManu] = useState<boolean>(false);
+  const session = useSession();
 
   const handleSignout = async () => {
     await signOut();
   };
+
+  const name = session.data?.user ? session.data?.user.name : user?.name;
 
   return (
     <div className="flex items-center gap-4 text-white">
@@ -27,8 +30,7 @@ export default function Signout({ lang, user }: Props) {
           className="flex items-center gap-2"
           onClick={() => setShowManu(!showManu)}
         >
-          {/* Profile Image Here */}
-          <span className="text-lg font-medium">{user.name}</span>
+          <span className="text-lg font-medium">{name}</span>
         </button>
 
         {showManu && (

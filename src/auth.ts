@@ -111,9 +111,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
 
       // TODO: Update session
-      if (trigger === 'update') {
-        token.user = session?.user || token.user;
-        token.backendTokens = session?.backendTokens || token.backendTokens;
+      if (trigger === 'update' && session?.user) {
+        token.user = session.user || token.user;
+        token.backendTokens = session.backendTokens || token.backendTokens;
       }
       return token;
     },

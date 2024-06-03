@@ -6,25 +6,32 @@ import AuthPannel from '@/components/auth/AuthPannel';
 import LangSwitcher from '@/components/shared/LangSwitcher';
 import { navbarItems } from '../../../constants';
 import { getDictionary } from '../../../lib/dictionaries';
-import type { Category, NavbarItem } from '../../../types/index';
+import type {
+  Category,
+  Dictionary,
+  NavbarItem,
+  User,
+} from '../../../types/index';
 import { getCategories } from '../../../services/category.service';
+import { auth } from '@/auth';
 
 type Props = {
   lang: Locale;
 };
 
 export default async function Navbar({ lang }: Props) {
-  const { navbar, category } = await getDictionary(lang);
+  const dict: Dictionary = await getDictionary(lang);
   const categories: Category[] = await getCategories();
+  const session = await auth();
 
   const langNavbarItems: NavbarItem[] = navbarItems.map((nav, index) => ({
     ...nav,
-    text: navbar.items[index],
+    text: dict.navbar.items[index],
   }));
 
   const langCategoryItems: Category[] = categories.map((cate, index) => ({
     ...cate,
-    name: category.categoryItems[index],
+    name: dict.category.categoryItems[index],
   }));
 
   return (
@@ -35,7 +42,7 @@ export default async function Navbar({ lang }: Props) {
             <IoMenuOutline size={24} />
           </span>
           <span className="ml-2 capitalize text-white">
-            {category.allCategory}
+            {dict.category.allCategory}
           </span>
 
           {/*  Category Dropdown */}
@@ -89,7 +96,7 @@ export default async function Navbar({ lang }: Props) {
           </div>
 
           <div className="flex items-center gap-x-5">
-            <AuthPannel lang={lang} />
+            <AuthPannel lang={lang} dict={dict} user={session?.user as User} />
             <LangSwitcher lang={lang} />
           </div>
         </div>
