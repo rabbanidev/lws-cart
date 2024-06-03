@@ -23,7 +23,13 @@ type Props = {
   cartItem: Cart | null | undefined;
 };
 
-export default function DetailsAction({ dict, product, lang, session }: Props) {
+export default function DetailsAction({
+  dict,
+  product,
+  lang,
+  session,
+  alreadyAddedInWishlist,
+}: Props) {
   const [quantity, setQuantity] = useState<number>(1);
 
   const colors = replaceMongoIdInArray(product.colors) as Color[];
@@ -113,7 +119,11 @@ export default function DetailsAction({ dict, product, lang, session }: Props) {
         />
         <WishlistButton
           isDetails
-          text={dict.product.addToWishlist}
+          text={
+            alreadyAddedInWishlist
+              ? dict.product.alreadyAddedInWishlist
+              : dict.product.addToWishlist
+          }
           productId={product.id}
           lang={lang}
           session={session}

@@ -65,7 +65,11 @@ export default async function CartPage({
               ))}
             </div>
             <div className="col-span-4 rounded border border-gray-200 p-4">
-              <OrderSummary lang={lang} isCheckout={false}>
+              <OrderSummary
+                dict={dict}
+                isCheckout={false}
+                cartItems={cartItems}
+              >
                 <LwsLink
                   lang={lang}
                   href="/checkout"

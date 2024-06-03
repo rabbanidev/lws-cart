@@ -15,7 +15,6 @@ type Props = {
   productId: string;
   lang: Locale;
   session: AuthSession | null;
-  alreadyAdded?: boolean;
 };
 
 export default function WishlistButton({
@@ -24,7 +23,6 @@ export default function WishlistButton({
   productId,
   lang,
   session,
-  alreadyAdded,
 }: Props) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +64,7 @@ export default function WishlistButton({
   return isDetails ? (
     <button
       type="button"
-      className={`flex items-center gap-2 rounded border border-gray-300 px-8 py-2 font-medium uppercase text-gray-600 transition hover:text-primary ${alreadyAdded ? 'text-primary' : ''}`}
+      className="flex items-center gap-2 rounded border border-gray-300 px-8 py-2 font-medium uppercase text-gray-600 transition hover:text-primary"
       onClick={handleWishlist}
       disabled={isLoading}
     >

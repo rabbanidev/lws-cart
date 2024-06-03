@@ -1,7 +1,4 @@
-import { Locale } from '@/i18n.config';
-import { Dictionary } from '../../../types/index';
-import { getDictionary } from '../../../lib/dictionaries';
-import { getFromCartsAction } from '@/actions/cart';
+import { Cart, Dictionary } from '../../../types/index';
 import numberFixed from '../../../utils/numberFixed';
 import {
   shippingChargeCal,
@@ -10,20 +7,18 @@ import {
 } from '../../../utils/cal';
 
 type Props = {
-  lang: Locale;
+  dict: Dictionary;
   isCheckout?: boolean;
+  cartItems: Cart[];
   children?: React.ReactNode;
 };
 
-export default async function OrderSummary({
-  lang,
+export default function OrderSummary({
+  dict,
   isCheckout = false,
+  cartItems,
   children,
 }: Props) {
-  const dict: Dictionary = await getDictionary(lang);
-  const cart = await getFromCartsAction();
-  const cartItems = cart?.items || [];
-
   const subTotal = subTotalCal(cartItems);
   const shippingCharge = shippingChargeCal(subTotal);
   const total = totalPriceCal(subTotal, shippingCharge);

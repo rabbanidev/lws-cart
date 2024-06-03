@@ -21,7 +21,7 @@ export default async function LanguageLayout({
       <TopNavbar lang={lang} />
       <Navbar lang={lang} />
       <main>{children}</main>
-      <Footer />
+      <Footer lang={lang} />
     </SessionProvider>
   );
 }

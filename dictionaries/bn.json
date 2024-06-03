@@ -86,8 +86,10 @@
   "product": {
     "breadcrumbTitle": "প্রোডাক্টস",
     "addToCart": "কার্টে যোগ করুন",
+    "alreadyAddedInCart": "কার্টে থেকে বাদ দিন",
     "stockOut": "স্টক নেই",
     "addToWishlist": "ফেভারিটে যোগ করুন",
+    "alreadyAddedInWishlist": "ফেভারিটে থেকে বাদ দিন",
     "view": "প্রোডাক্টস দেখুন",
     "availability": "এভেইল্যাবল",
     "brand": "ব্রান্ড ",
@@ -142,7 +144,7 @@
   },
 
   "checkout": {
-    "title": "Checkout",
+    "title": "চেকআউট",
     "placeOrder": "অর্ডার করুন",
     "termsCondition": "আমি <a href='#' style='color:#fd3d57'> শর্তাবলীতে </a> সম্মত"
   },

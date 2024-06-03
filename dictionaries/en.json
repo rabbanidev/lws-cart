@@ -86,8 +86,10 @@
   "product": {
     "breadcrumbTitle": "Product",
     "addToCart": "Add to cart",
+    "alreadyAddedInCart": "Remove From Cart",
     "stockOut": "Stock Out",
     "addToWishlist": "Add to wishlist",
+    "alreadyAddedInWishlist": "Remove from wishlist",
     "view": "view product",
     "availability": "Availability",
     "brand": "Brand",
