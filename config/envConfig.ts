@@ -19,6 +19,8 @@ const envConfig = {
     access_token_expire_in: process.env.ACCESS_TOKEN_EXPIRE_IN,
     redresh_token_expire_in: process.env.REFRESH_TOKEN_EXPIRE_IN,
   },
+  access_gmail: process.env.ACCESS_GMAIL,
+  access_gmail_pass: process.env.ACCESS_GMAIL_PASS,
 };
 
 export default envConfig;

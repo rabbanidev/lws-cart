@@ -20,8 +20,8 @@ export default function AddressForm({ dict, lang, address }: Props) {
 
   return (
     <form action={formAction}>
-      <ShippingForm dict={dict} address={address.shipping} errors={[]} />
-      <DeliveryForm dict={dict} address={address.delivery} errors={[]} />
+      <ShippingForm dict={dict} address={address?.shipping} errors={[]} />
+      <DeliveryForm dict={dict} address={address?.delivery} errors={[]} />
       <SubmitButton
         lang={lang}
         className="mt-5 block cursor-pointer rounded border border-primary bg-primary px-8 py-2 text-center font-roboto font-medium uppercase text-white transition hover:bg-transparent hover:text-primary"

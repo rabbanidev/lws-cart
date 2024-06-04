@@ -1,3 +1,4 @@
+import { Order, OrderItem } from './order';
 import { Address, CommonAddress } from './address';
 import { Cart } from './cart';
 import { AuthSession } from './auth';
@@ -26,4 +27,6 @@ export type {
   ProductFilters,
   Address,
   CommonAddress,
+  Order,
+  OrderItem,
 };

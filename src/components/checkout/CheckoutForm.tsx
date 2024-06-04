@@ -8,6 +8,12 @@ import DeliveryForm from '../address/DeliveryForm';
 import SubmitButton from '../UI/SubmitButton';
 import { useFormState } from 'react-dom';
 import { placeOrder } from '@/actions/checkout';
+import {
+  shippingChargeCal,
+  subTotalCal,
+  totalPriceCal,
+} from '../../../utils/cal';
+import ErrorMessage from '../UI/Error';
 
 type Props = {
   lang: Locale;
@@ -24,7 +30,16 @@ export default function CheckoutForm({
 }: Props) {
   const [state, formAction] = useFormState(placeOrder, null);
 
+  const subTotal = subTotalCal(cartItems);
+  const shippingCharge = shippingChargeCal(subTotal);
+  const total = totalPriceCal(subTotal, shippingCharge);
+
   const handleAction = (formData: FormData) => {
+    formData.set('orderItems', JSON.stringify(cartItems));
+    formData.set('subTotal', String(subTotal));
+    formData.set('shipping', String(shippingCharge));
+    formData.set('total', String(total));
+
     formAction(formData);
   };
 
@@ -34,13 +49,13 @@ export default function CheckoutForm({
         <div className="col-span-1 space-y-4 lg:col-span-8">
           <ShippingForm
             dict={dict}
-            address={address.shipping}
+            address={address?.shipping}
             errors={state?.errors}
           />
           <div className="mt-8">
             <DeliveryForm
               dict={dict}
-              address={address.delivery}
+              address={address?.delivery}
               errors={state?.errors}
             />
           </div>
@@ -69,6 +84,11 @@ export default function CheckoutForm({
             >
               {dict.checkout.placeOrder}
             </SubmitButton>
+            {state?.status !== 201 && state?.message && (
+              <div className="mt-4">
+                <ErrorMessage message={state.message} />
+              </div>
+            )}
           </OrderSummary>
         </div>
       </div>

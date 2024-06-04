@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+'use server';
+
+import { auth } from '@/auth';
 import { checkoutSchema } from '../../lib/zod';
+import envConfig from '../../config/envConfig';
+import { revalidateTag } from 'next/cache';
 
 export const placeOrder = async (_prevState: any, formData: FormData) => {
   const address = {
@@ -29,11 +34,43 @@ export const placeOrder = async (_prevState: any, formData: FormData) => {
     };
   }
 
+  const payload = {
+    address,
+    orderItems: formData.get('orderItems'),
+    subTotal: formData.get('subTotal'),
+    shipping: formData.get('shipping'),
+    total: formData.get('total'),
+  };
+
   try {
-    // return {
-    //   status: response.status,
-    //   message: result.message || 'Failed to create order!',
-    // };
+    const session = await auth();
+
+    const response = await fetch(`${envConfig.client_uri}/api/order`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${session?.backendTokens.accessToken}`,
+      },
+      body: JSON.stringify({
+        ...payload,
+        subTotal: Number(payload.subTotal),
+        shipping: Number(payload.shipping),
+        total: Number(payload.total),
+        orderItems: JSON.parse(payload.orderItems as string),
+      }),
+    });
+    const result = await response.json();
+
+    console.log(result);
+
+    if (response.status === 201) {
+      revalidateTag('cart');
+    }
+
+    return {
+      order: result.order,
+      status: response.status,
+      message: result.message,
+    };
   } catch (error: any) {
     return {
       status: 500,
