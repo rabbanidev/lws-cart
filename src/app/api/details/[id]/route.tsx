@@ -10,8 +10,10 @@ export async function GET(
   { params: { id } }: { params: { id: string } },
 ) {
   const product = (await getProduct(id)) as Product;
-  const imageUrl =
-    'https://placehold.co/1200x800/0A0A0A/FFFFFF/jpg?text=Hello+world';
+  // const imageUrl =
+  //   'https://placehold.co/1200x800/0A0A0A/FFFFFF/jpg?text=Hello+world';
+
+  const imageUrl = product.images[0];
 
   return new ImageResponse(<img src={imageUrl} alt={product.name} />, {
     width: 1200,
