@@ -26,7 +26,7 @@ export default function Signout({ lang, user }: Props) {
 
   useEffect(() => {
     //@ts-ignore
-    if (session?.data.error === 'RefreshAccessTokenError') {
+    if (session?.data?.error === 'RefreshAccessTokenError') {
       signOut();
     }
   }, [session]);

@@ -119,7 +119,7 @@ export default async function DetailsContent({ lang, product }: Props) {
         alreadyAddedInWishlist={Boolean(wishlistItem)}
         cartItem={cartItem}
       />
-      <SocialShare id={productId} />
+      <SocialShare />
     </div>
   );
 }

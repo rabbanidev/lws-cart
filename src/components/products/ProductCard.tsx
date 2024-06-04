@@ -50,7 +50,7 @@ export default async function ProductCard({ lang, product }: Props) {
           height={100}
         />
         <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black bg-opacity-40 opacity-0 transition group-hover:opacity-100">
-          <ViewButton title={dict.product.view} />
+          <ViewButton title={dict.product.view} lang={lang} id={productId} />
           <WishlistButton
             text={dict.product.addToWishlist}
             productId={productId}

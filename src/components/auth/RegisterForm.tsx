@@ -46,7 +46,6 @@ export default function RegisterForm({ lang, dict }: Props) {
             id="name"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="fulan fulana"
-            defaultValue="Ridoy"
           />
           {name?.length > 0 && <ErrorMessage message={name[0]} />}
         </div>
@@ -60,7 +59,6 @@ export default function RegisterForm({ lang, dict }: Props) {
             id="email"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="youremail.@domain.com"
-            defaultValue="ridoy@gmail.com"
           />
           {email?.length > 0 && <ErrorMessage message={email[0]} />}
         </div>
@@ -74,7 +72,6 @@ export default function RegisterForm({ lang, dict }: Props) {
             id="password"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="*******"
-            defaultValue="123456"
           />
           {password?.length > 0 && <ErrorMessage message={password[0]} />}
         </div>
@@ -88,7 +85,6 @@ export default function RegisterForm({ lang, dict }: Props) {
             id="confirmPassword"
             className="block w-full rounded border border-gray-300 px-4 py-3 text-sm text-gray-600 placeholder-gray-400 focus:border-primary focus:ring-0"
             placeholder="*******"
-            defaultValue="123456"
           />
           {confirmPassword?.length > 0 && (
             <ErrorMessage message={confirmPassword[0]} />
