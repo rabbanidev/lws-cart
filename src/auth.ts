@@ -108,13 +108,51 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           ...token,
           ...user,
         };
+      } else if (Date.now() < Number(token.backendTokens.expireIn) * 1000) {
+        return token;
       }
-
       // TODO: Update session
-      if (trigger === 'update' && session?.user) {
+      else if (trigger === 'update' && session?.user) {
         token.user = session.user || token.user;
         token.backendTokens = session.backendTokens || token.backendTokens;
+      } else {
+        if (!token.backendTokens.refreshToken)
+          throw new Error('Missing refresh token');
+
+        try {
+          const response = await fetch(
+            `${envConfig.client_uri}/api/auth/refresh-token`,
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                refreshToken: token.backendTokens.refreshToken,
+              }),
+            },
+          );
+
+          const result = await response.json();
+
+          if (response.status === 200) {
+            return {
+              ...token,
+              backendTokens: {
+                ...result.backendTokens,
+                expireIn: Math.floor(
+                  Date.now() / 1000 + (result.backendTokens.expireIn as number),
+                ),
+              },
+            };
+          } else {
+            return { ...token, error: 'RefreshAccessTokenError' as const };
+          }
+        } catch (error) {
+          return { ...token, error: 'RefreshAccessTokenError' as const };
+        }
       }
+
       return token;
     },
 

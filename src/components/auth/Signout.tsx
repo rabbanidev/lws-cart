@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client';
 
 import { User } from 'next-auth';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import LwsLink from '@/components/shared/LwsLink';
 import { Locale } from '@/i18n.config';
 import { FaRegUser } from 'react-icons/fa';
@@ -22,6 +23,13 @@ export default function Signout({ lang, user }: Props) {
   };
 
   const name = session.data?.user ? session.data?.user.name : user?.name;
+
+  useEffect(() => {
+    //@ts-ignore
+    if (session?.data.error === 'RefreshAccessTokenError') {
+      signOut();
+    }
+  }, [session]);
 
   return (
     <div className="flex items-center gap-4 text-white">
