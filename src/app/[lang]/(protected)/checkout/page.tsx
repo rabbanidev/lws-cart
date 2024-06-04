@@ -3,7 +3,6 @@ import { Locale } from '@/i18n.config';
 import { getDictionary } from '../../../../../lib/dictionaries';
 import { Dictionary } from '../../../../../types/index';
 import { getFromCartsAction } from '@/actions/cart';
-import { redirect } from 'next/navigation';
 import CheckoutForm from '@/components/checkout/CheckoutForm';
 import { getUserAddressAction } from '@/actions/address';
 
@@ -19,10 +18,6 @@ export default async function CheckoutPage({ params: { lang } }: Props) {
   const result = await getUserAddressAction();
 
   const cartItems = cart?.items || [];
-
-  if (cartItems.length === 0) {
-    redirect('/cart');
-  }
 
   return (
     <>

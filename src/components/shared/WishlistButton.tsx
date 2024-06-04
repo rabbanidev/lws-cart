@@ -53,7 +53,7 @@ export default function WishlistButton({
   if (isLoading) {
     return (
       <div
-        className="fixed inset-0 flex min-h-[65vh] w-full items-center justify-center bg-black/60 backdrop-blur-sm"
+        className="fixed inset-0 z-40 flex min-h-[65vh] w-full items-center justify-center bg-black/60 backdrop-blur-sm"
         style={{ zIndex: 999 }}
       >
         <Loading />

@@ -140,6 +140,11 @@
       "total": "Total",
       "free": "Free",
       "proceedToCheckout": "Proceed to checkout"
+    },
+    "success": {
+      "title": "Order Successfully Completed.",
+      "description": "Thank you for completing your order. We have sent the invoice to your email address. Please check your spam folder if you do not see it in your inbox.",
+      "download": "Download Invoice"
     }
   },
   "checkout": {

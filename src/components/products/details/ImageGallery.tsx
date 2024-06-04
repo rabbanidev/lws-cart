@@ -36,7 +36,6 @@ export default function ImageGallery({ alt, images }: Props) {
         className="order-1 h-[512px] w-full"
         width={100}
         height={100}
-        unoptimized
       />
     </div>
   );

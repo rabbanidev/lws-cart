@@ -36,7 +36,6 @@ export default async function Categories({ lang }: Props) {
                 className="w-full"
                 width={100}
                 height={100}
-                unoptimized={true}
               />
             )}
             <LwsLink

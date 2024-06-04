@@ -12,8 +12,6 @@ export async function GET(
   const product = (await getProduct(id)) as Product;
   const imageUrl = product.images[0];
 
-  console.log({ imageUrl });
-
   return new ImageResponse(<img src={imageUrl} alt={product.name} />, {
     width: 1200,
     height: 600,
