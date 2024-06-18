@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { verifyToken } from '../../../../lib/jwt';
@@ -50,6 +51,8 @@ export async function POST(req: NextRequest) {
         })
         .lean();
 
+      console.log('server result', result);
+
       return NextResponse.json(
         {
           message: 'Order created successfully.',
@@ -61,13 +64,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    console.log('order created failed');
+
     return NextResponse.json(
       { message: 'Order created failed.' },
       {
         status: 400,
       },
     );
-  } catch (error) {
+  } catch (error: any) {
+    console.log('server error, ', error);
+    console.log('server error, ', error.message);
     return NextResponse.json(error, {
       status: 500,
     });
