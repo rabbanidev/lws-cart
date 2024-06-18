@@ -26,9 +26,15 @@ export const createPDF = async (invoiceId: string, jsonData: Order) => {
     jsonData.total,
   );
 
+  // const filePath = path.join(
+  //   process.cwd(),
+  //   `/public/uploads/invoices/${invoiceId}.pdf`,
+  // );
+
   const filePath = path.join(
     process.cwd(),
-    `/public/uploads/invoices/${invoiceId}.pdf`,
+    '/public/uploads/invoices/',
+    `${invoiceId}.pdf`,
   );
 
   console.log('filePath', filePath);
