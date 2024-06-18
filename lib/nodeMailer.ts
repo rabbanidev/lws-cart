@@ -1,11 +1,17 @@
 import nodemailer from 'nodemailer';
 import smtpTransport from 'nodemailer-smtp-transport';
 import envConfig from '../config/envConfig';
+import path from 'path';
 
 export const orderPurchaseMail = async (
   userEmail: string,
   invoiceId: string,
 ) => {
+  const filePath = path.join(
+    process.cwd(),
+    `public/uploads/invoices/${invoiceId}.pdf`,
+  );
+
   const transporter = nodemailer.createTransport(
     smtpTransport({
       service: 'gmail',
@@ -27,7 +33,7 @@ export const orderPurchaseMail = async (
       {
         filename: `invoice.pdf`,
         contentType: 'application/pdf',
-        path: `./public/uploads/invoices/${invoiceId}.pdf`,
+        path: filePath,
       },
     ],
   };

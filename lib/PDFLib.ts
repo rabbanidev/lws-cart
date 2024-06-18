@@ -3,6 +3,7 @@ import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import fs from 'fs';
 import { CommonAddress, Order, OrderItem } from '../types/index';
 import numberFixed from '../utils/numberFixed';
+import path from 'path';
 
 export const createPDF = async (invoiceId: string, jsonData: Order) => {
   const pdfDoc = await PDFDocument.create();
@@ -25,8 +26,14 @@ export const createPDF = async (invoiceId: string, jsonData: Order) => {
     jsonData.total,
   );
 
+  const filePath = path.join(
+    process.cwd(),
+    `public/uploads/invoices/${invoiceId}.pdf`,
+  );
+
   fs.writeFileSync(
-    `./public/uploads/invoices/${invoiceId}.pdf`,
+    filePath,
+    // `./public/uploads/invoices/${invoiceId}.pdf`,
     await pdfDoc.save(),
   );
 };
