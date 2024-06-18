@@ -60,6 +60,8 @@ export const placeOrder = async (_prevState: any, formData: FormData) => {
     });
     const result = await response.json();
 
+    console.log('result', response.status, result);
+
     if (response.status === 201) {
       revalidateTag('cart');
       return {

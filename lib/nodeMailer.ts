@@ -9,7 +9,7 @@ export const orderPurchaseMail = async (
 ) => {
   const filePath = path.join(
     process.cwd(),
-    `public/uploads/invoices/${invoiceId}.pdf`,
+    `/public/uploads/invoices/${invoiceId}.pdf`,
   );
 
   const transporter = nodemailer.createTransport(

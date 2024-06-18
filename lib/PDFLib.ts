@@ -28,14 +28,12 @@ export const createPDF = async (invoiceId: string, jsonData: Order) => {
 
   const filePath = path.join(
     process.cwd(),
-    `public/uploads/invoices/${invoiceId}.pdf`,
+    `/public/uploads/invoices/${invoiceId}.pdf`,
   );
 
-  fs.writeFileSync(
-    filePath,
-    // `./public/uploads/invoices/${invoiceId}.pdf`,
-    await pdfDoc.save(),
-  );
+  console.log('filePath', filePath);
+
+  fs.writeFileSync(filePath, await pdfDoc.save());
 };
 
 const PDFHeader = async (
